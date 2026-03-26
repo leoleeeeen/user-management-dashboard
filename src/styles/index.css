@@ -7,6 +7,21 @@ body {
     color: #111;
 }
 
+.heading_1 {
+    margin-top: 20px;
+    font-weight: 800;
+    font-size: 2rem;
+}
+
+.input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+}
+
 .button {
     background-color: #7783F7;
     border-radius: 8px;
@@ -27,4 +42,9 @@ body {
     &:hover {
         background-color: #CFCFCF;
     }
+}
+
+.icon_button {
+    display: flex;
+    gap: 4px;
 }
