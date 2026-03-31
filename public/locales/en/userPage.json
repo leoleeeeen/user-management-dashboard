@@ -1,0 +1,10 @@
+{
+    "back_button": "Back",
+    "page_heading": "{{name}}'s user page",
+    "name": "Name: ",
+    "last_name": "Last name: ",
+    "email": "Email: ",
+    "age": "Age: ",
+    "phone": "Phone: ",
+    "edit_button": "Edit"
+}

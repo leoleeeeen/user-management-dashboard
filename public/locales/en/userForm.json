@@ -1,0 +1,8 @@
+{
+    "name": "Name",
+    "last_name": "Last name",
+    "email": "Email",
+    "age": "Age",
+    "phone": "Phone",
+    "save_button": "Save"
+}

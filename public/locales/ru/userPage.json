@@ -1,0 +1,10 @@
+{
+    "back_button": "Назад",
+    "page_heading": "Страница пользователя {{name}}",
+    "name": "Имя: ",
+    "last_name": "Фамилия: ",
+    "email": "Email: ",
+    "age": "Возраст: ",
+    "phone": "Телефон: ",
+    "edit_button": "Редактировать"
+}
