@@ -7,6 +7,10 @@ body {
     color: #111;
 }
 
+.text_center {
+    text-align: center;
+}
+
 .heading_1 {
     margin-top: 20px;
     font-weight: 800;
@@ -45,6 +49,6 @@ body {
 }
 
 .icon_button {
-    display: flex;
+    display: inline-flex;
     gap: 4px;
 }

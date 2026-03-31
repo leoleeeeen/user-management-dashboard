@@ -1,20 +1,23 @@
-import { UserForm } from "@/components/UserForm/UserForm"
 import styles from "./UserEditionPage.module.css"
-import arrow from "@/assets/images/arrow-narrow-left.svg"
-import { useNavigate } from "react-router-dom";
-
+import arrow from "@/assets/icons/arrow-narrow-left.svg"
+import { UserForm } from "@/components/UserForm";
+import { Link, useLocation } from "react-router-dom";
 
 export function UserEditionPage() {
-    const navigate = useNavigate();
+    const { state } = useLocation();
     return (
         <div className={styles.content}>
-            <button
-                onClick={() => navigate(-1)}
-                className="button_secondary icon_button">
-                <img src={arrow}></img>
-                Back
-            </button>
-            <h1 className="heading_1">Edit user</h1>
+            <Link
+                to={state.fromUserPage
+                    ? `/userPage/0`
+                    : "/"}
+            >
+                <button className="button_secondary icon_button">
+                    <img src={arrow} />
+                    Back
+                </button>
+            </Link>
+            <h1 className="heading_1 text_center">Edit user</h1>
             <UserForm />
         </div>
     )

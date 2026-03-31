@@ -28,8 +28,8 @@ export function UserForm() {
                         id="phone"
                         className="input" />
                 </label>
-                <button className="button">Save</button>
             </div>
+            <button className="button">Save</button>
         </form>
     )
 }

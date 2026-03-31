@@ -1,0 +1,14 @@
+.content {
+    max-width: 1280px;
+    padding-inline: 40px;
+    margin: 40px auto;
+}
+
+.search_form {
+    display: flex;
+    gap: 12px;
+}
+
+.createUser_button {
+    margin-top: 20px;
+}
