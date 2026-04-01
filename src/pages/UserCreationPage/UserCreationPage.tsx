@@ -1,5 +1,5 @@
+import { ArrowNarrowLeft } from "@/assets/icons/ArrowNarrowLeft";
 import styles from "./UserCreationPage.module.css"
-import arrow from "@/assets/icons/arrow-narrow-left.svg"
 import { UserForm } from "@/components/UserForm";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom"
@@ -11,7 +11,7 @@ export function UserCreationPage() {
             <Link to={"/"}>
                 <button
                     className="button_secondary icon_button">
-                    <img src={arrow} />
+                    <ArrowNarrowLeft />
                     {t("back_button")}
                 </button>
             </Link>

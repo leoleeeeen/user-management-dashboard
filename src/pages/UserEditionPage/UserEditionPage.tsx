@@ -1,5 +1,5 @@
+import { ArrowNarrowLeft } from "@/assets/icons/ArrowNarrowLeft";
 import styles from "./UserEditionPage.module.css"
-import arrow from "@/assets/icons/arrow-narrow-left.svg"
 import { UserForm } from "@/components/UserForm";
 import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router-dom";
@@ -15,7 +15,7 @@ export function UserEditionPage() {
                     : "/"}
             >
                 <button className="button_secondary icon_button">
-                    <img src={arrow} />
+                    <ArrowNarrowLeft />
                     {t("back_button")}
                 </button>
             </Link>

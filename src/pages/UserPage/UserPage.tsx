@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import styles from "./UserPage.module.css"
-import arrow from "@/assets/icons/arrow-narrow-left.svg"
+import { ArrowNarrowLeft } from "@/assets/icons/ArrowNarrowLeft";
 import { useTranslation } from "react-i18next"
 
 export function UserPage() {
@@ -10,7 +10,7 @@ export function UserPage() {
             <Link to={"/"}>
                 <button
                     className="button_secondary icon_button">
-                    <img src={arrow} className={styles.img} />
+                    <ArrowNarrowLeft />
                     {t("back_button")}
                 </button>
             </Link>
