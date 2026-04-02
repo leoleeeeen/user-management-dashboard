@@ -1,10 +1,10 @@
-import styles from "./UserList.module.css"
 import { UserCard } from "../UserCard"
+import { Box } from "@chakra-ui/react"
 
 export function UserList() {
     return (
-        <div className={styles.user_card_container}>
+        <Box mt="5">
             <UserCard />
-        </div>
+        </Box>
     )
 }

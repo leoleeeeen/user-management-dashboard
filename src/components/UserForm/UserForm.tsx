@@ -1,43 +1,51 @@
 import { useTranslation } from "react-i18next"
 import styles from "./UserForm.module.css"
+import { Button, Field, Fieldset, Input } from "@chakra-ui/react";
 
 export function UserForm() {
     const { t } = useTranslation("userForm");
     return (
-        <form className={styles.form}>
-            <div className={styles.inputs}>
-                <label htmlFor="username"><strong>{t("name")}</strong>
-                    <input
-                        type="text"
-                        id="username"
-                        className="input" />
-                </label>
-                <label htmlFor="last_name"><strong>{t("last_name")}</strong>
-                    <input
-                        type="text"
-                        id="last_name"
-                        className="input" />
-                </label>
-                <label htmlFor="age"><strong>{t("age")}</strong>
-                    <input
-                        type="number"
-                        id="age"
-                        className="input" />
-                </label>
-                <label htmlFor="email"><strong>{t("email")}</strong>
-                    <input
-                        type="email"
-                        id="email"
-                        className="input" />
-                </label>
-                <label htmlFor="phone"><strong>{t("phone")}</strong>
-                    <input
-                        type="tel"
-                        id="phone"
-                        className="input" />
-                </label>
-            </div>
-            <button className="button">{t("save_button")}</button>
+        <form>
+            <Fieldset.Root className={styles.form}>
+                <Fieldset.Content display="flex" gap="3" flexDirection="column">
+                    <Field.Root>
+                        <Field.Label className={styles.label}>
+                            {t("name")}
+                        </Field.Label>
+                        <Input className="input" />
+                        <Field.ErrorText>...</Field.ErrorText>
+                    </Field.Root>
+                    <Field.Root>
+                        <Field.Label className={styles.label}>
+                            {t("last_name")}
+                        </Field.Label>
+                        <Input className="input" />
+                        <Field.ErrorText>...</Field.ErrorText>
+                    </Field.Root>
+                    <Field.Root>
+                        <Field.Label className={styles.label}>
+                            {t("age")}
+                        </Field.Label>
+                        <Input className="input" />
+                        <Field.ErrorText>...</Field.ErrorText>
+                    </Field.Root>
+                    <Field.Root>
+                        <Field.Label className={styles.label}>
+                            {t("email")}
+                        </Field.Label>
+                        <Input className="input" type="email" />
+                        <Field.ErrorText>...</Field.ErrorText>
+                    </Field.Root>
+                    <Field.Root>
+                        <Field.Label className={styles.label}>
+                            {t("phone")}
+                        </Field.Label>
+                        <Input className="input" />
+                        <Field.ErrorText>...</Field.ErrorText>
+                    </Field.Root>
+                </Fieldset.Content>
+                <Button variant="primary" type="submit" mt="6">{t("save_button")}</Button>
+            </Fieldset.Root>
         </form>
     )
 }

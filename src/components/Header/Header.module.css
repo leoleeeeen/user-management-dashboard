@@ -13,20 +13,6 @@
     flex: 1;
 }
 
-.project_name {
-    color: white;
-    font-size: 1.5rem;
-    font-weight: 500;
-}
-
-.lang_buttons,
-.lang_buttons button {
-    color: white;
-    font-weight: 600;
-    display: flex;
-    gap: 4px;
-}
-
 .lang_btn_active {
     text-decoration: underline;
 }

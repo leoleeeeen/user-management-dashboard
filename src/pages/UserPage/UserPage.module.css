@@ -1,12 +1,6 @@
-.content {
-    max-width: 1280px;
-    padding-inline: 40px;
-    margin: 40px auto;
-}
-
 .user_card {
     margin-top: 16px;
-    padding: 10px 12px;
+    padding: 16px 16px;
     border-radius: 8px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     display: flex;

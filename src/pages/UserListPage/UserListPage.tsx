@@ -1,23 +1,30 @@
 import { Link } from "react-router-dom"
-import styles from "./UserListPage.module.css"
 import { UserList } from "@/components/UserList"
 import { useTranslation } from "react-i18next"
+import { Box, Button, Group, Input } from "@chakra-ui/react";
 
 export function UserListPage() {
     const { t } = useTranslation("userListPage");
     return (
-        <div className={styles.content}>
-            <form className={styles.search_form}>
-                <input className="input" placeholder={t("search_placeholder")} />
-                <button className="button">{t("search_button")}</button>
+        <Box px="10" my="10" mx="auto" maxW="1200px">
+            <form>
+                <Group attached w="full">
+                    <Input
+                        placeholder={t("search_placeholder")}
+                        className="input"
+                    />
+                    <Button type="submit" variant="secondary" alignSelf="stretch">
+                        {t("search_button")}
+                    </Button>
+                </Group>
             </form>
             <Link to={"createUser"}>
-                <button className={`button ${styles.createUser_button}`}>
+                <Button variant="primary" mt="5" >
                     {t("create_user_button")}
-                </button>
+                </Button>
             </Link>
             <UserList />
-        </div>
-    )
+        </Box >
+    );
 }
 

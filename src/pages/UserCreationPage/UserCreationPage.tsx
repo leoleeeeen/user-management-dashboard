@@ -1,23 +1,23 @@
 import { ArrowNarrowLeft } from "@/assets/icons/ArrowNarrowLeft";
-import styles from "./UserCreationPage.module.css"
 import { UserForm } from "@/components/UserForm";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom"
+import { Button, Text } from "@chakra-ui/react";
 
 export function UserCreationPage() {
     const { t } = useTranslation("userCreationPage");
     return (
-        <div className={styles.content}>
+        <div className="content">
             <Link to={"/"}>
-                <button
-                    className="button_secondary icon_button">
+                <Button
+                    variant="secondary">
                     <ArrowNarrowLeft />
                     {t("back_button")}
-                </button>
+                </Button>
             </Link>
-            <h1 className="heading_1 text_center">{t("page_heading")}</h1>
+            <Text className="heading_1 text_center">{t("page_heading")}</Text>
             <UserForm />
-        </div>
+        </div >
     )
 }
 
