@@ -1,45 +1,17 @@
 import { useTranslation } from "react-i18next";
 import { Table } from "@chakra-ui/react"
 import { UserRow } from "../UserRow";
+import { useQuery } from "@tanstack/react-query";
+import { getUsers } from "@/api/getUsers";
 
-export type User = {
-    id: number;
-    name: string;
-    lastName: string;
-    age: number;
-    email: string;
-    tel: string;
-}
-
-const users: User[] = [
-    {
-        id: 1,
-        name: "Pupa",
-        lastName: "Pupkin",
-        age: 18,
-        email: "Lupa@email.ru",
-        tel: "66666"
-    },
-    {
-        id: 2,
-        name: "Lupa",
-        lastName: "Pupkin",
-        age: 18,
-        email: "Pupa@email.ru",
-        tel: "66666"
-    },
-    {
-        id: 3,
-        name: "Chel",
-        lastName: "Pupkin",
-        age: 18,
-        email: "Meow@email.ru",
-        tel: "66666"
-    }
-]
 
 export function UserList() {
     const { t } = useTranslation("userList");
+
+    const { data } = useQuery({
+        queryKey: ["users"],
+        queryFn: getUsers
+    })
 
     return (
         <Table.Root
@@ -58,8 +30,8 @@ export function UserList() {
                 </Table.Row>
             </Table.Header>
             <Table.Body>
-                {users.map((user) => (
-                    <UserRow user={user} />
+                {data && data.users.map((user) => (
+                    <UserRow key={user.id} user={user} />
                 ))}
             </Table.Body>
         </Table.Root>
