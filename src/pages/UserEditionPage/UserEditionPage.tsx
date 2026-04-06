@@ -1,17 +1,24 @@
 import { ArrowNarrowLeft } from "@/assets/icons/ArrowNarrowLeft";
 import { UserForm } from "@/components/UserForm";
 import { useTranslation } from "react-i18next";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { Button, Text } from "@chakra-ui/react";
 
 export function UserEditionPage() {
     const { state } = useLocation();
     const { t } = useTranslation("userEditionPage");
+
+    const userId = useParams().userId;
+
+    if (!userId) {
+        throw new Error('userId is required');
+    }
+
     return (
         <div className="content">
             <Link
                 to={state.fromUserPage
-                    ? `/userPage/0`
+                    ? `/userPage/${userId}`
                     : "/"}
             >
                 <Button variant="secondary">

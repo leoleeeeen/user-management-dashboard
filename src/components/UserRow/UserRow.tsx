@@ -12,13 +12,13 @@ export function UserRow({ user }: { user: User }) {
             <Table.Cell>{user.email}</Table.Cell>
             <Table.Cell >
                 <Box display="flex" gap="2" justifyContent="end">
-                    <Link to={"userPage/0"}>
+                    <Link to={`userPage/${user.id}`}>
                         <Button variant="primary">
                             {t("view_button")}
                         </Button>
                     </Link>
                     <Link
-                        to={"editUser/0"}
+                        to={`editUser/${user.id}`}
                         state={{ fromUserPage: false }}>
                         <Button variant="secondary">
                             {t("edit_button")}
