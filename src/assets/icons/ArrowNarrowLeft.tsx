@@ -10,9 +10,9 @@ export function ArrowNarrowLeft() {
             xmlns="http://www.w3.org/2000/svg">
             <path
                 d="M5 12H19M5 12L9 16M5 12L9 8"
-                stroke="black" stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round" />
+                stroke="black" strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round" />
         </SVG>
     )
 }

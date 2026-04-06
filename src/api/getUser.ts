@@ -4,7 +4,7 @@ import { httpClient } from "./httpClient";
 
 export const getUser = (userId: string) => {
     return httpClient<User>({
-        url: `/${userId}`,
+        url: `/users/${userId}`,
         method: "GET"
     })
 }

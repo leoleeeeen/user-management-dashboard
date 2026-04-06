@@ -5,6 +5,8 @@ import { useTranslation } from "react-i18next"
 import { Box, Button, Center, Spinner, Text } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
 import { getUser } from "@/api/getUser";
+import { getUserImg } from "@/api/getUserImg";
+import { useEffect, useMemo } from "react";
 
 export function UserPage() {
     const { t } = useTranslation("userPage");
@@ -16,13 +18,39 @@ export function UserPage() {
 
     const {
         data: user,
-        isLoading
+        isLoading: userInfoIsLoading
     } = useQuery({
         queryKey: ["user", userId],
         queryFn: () => getUser(userId),
         placeholderData: undefined
     })
 
+
+    const { data: blob } = useQuery({
+        enabled: !!user,
+        queryKey: ["userImg"],
+        queryFn: () => {
+            if (!user?.firstName) {
+                throw new Error("firstName is required");
+            }
+            return getUserImg(user?.firstName);
+        },
+    });
+
+    const imgUrl = useMemo(() => {
+        if (!blob) return undefined;
+        return URL.createObjectURL(blob);
+    }, [blob]);
+
+
+
+    useEffect(() => {
+        return () => {
+            if (imgUrl) {
+                URL.revokeObjectURL(imgUrl);
+            }
+        };
+    }, [imgUrl]);
 
     return (
         <div className="content">
@@ -33,7 +61,7 @@ export function UserPage() {
                     {t("back_button")}
                 </Button>
             </Link>
-            {isLoading
+            {userInfoIsLoading
                 ? <Center h="full" mt="150px">
                     <Spinner color="primary.500" />
                 </Center>
@@ -42,7 +70,12 @@ export function UserPage() {
                     <h1 className="heading_1">{t("page_heading", { name: `${user?.firstName}` })}</h1>
                     <div className={styles.user_card}>
                         <Box display="flex">
-                            <Box width="150px" height="150px" borderRadius="lg" bgColor="gray.300"></Box>
+                            <Box
+                                width="150px"
+                                height="150px"
+                                borderRadius="lg"
+                                bgColor="gray.300"
+                                bgImage={`url(${imgUrl})`}></Box>
                             <Box ml="4">
                                 <Text fontSize="2xl" fontWeight="600">{user?.firstName} {user?.lastName}</Text>
                                 <Box mt="2">

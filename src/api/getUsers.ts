@@ -16,7 +16,7 @@ export type UsersData = {
 
 export const getUsers = () => {
     return httpClient<UsersData>({
-        url: "/",
+        url: "/users",
         method: "GET"
     })
 }
