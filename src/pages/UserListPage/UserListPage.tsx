@@ -2,18 +2,44 @@ import { Link } from "react-router-dom"
 import { UserList } from "@/components/UserList"
 import { useTranslation } from "react-i18next"
 import { Box, Button, Group, Input } from "@chakra-ui/react";
+import { Cross } from "@/assets/icons/Cross";
+import { useUserListPage } from "./hooks/useUserListPage";
 
 export function UserListPage() {
     const { t } = useTranslation("userListPage");
+    const {
+        searchInput,
+        setSearchInput,
+        // page,
+        // setPage,
+        data,
+        handleSearchSubmit,
+        handleClear
+    } = useUserListPage();
+
     return (
         <Box px="10" my="10" mx="auto" maxW="1200px">
-            <form>
-                <Group attached w="full">
+            <form onSubmit={(e) => handleSearchSubmit(e)}>
+                <Group attached w="full" position="relative">
                     <Input
                         placeholder={t("search_placeholder")}
                         className="input"
+                        onChange={e => setSearchInput(e.target.value)}
+                        value={searchInput}
                     />
-                    <Button type="submit" variant="secondary" alignSelf="stretch">
+                    <Button
+                        onClick={handleClear}
+                        variant="icon"
+                        position="absolute"
+                        right="75px"
+                        zIndex="1"
+                    >
+                        <Cross />
+                    </Button>
+                    <Button
+                        type="submit"
+                        variant="secondary"
+                        alignSelf="stretch">
                         {t("search_button")}
                     </Button>
                 </Group>
@@ -23,7 +49,7 @@ export function UserListPage() {
                     {t("create_user_button")}
                 </Button>
             </Link>
-            <UserList />
+            <UserList users={data?.users ?? []} />
         </Box >
     );
 }

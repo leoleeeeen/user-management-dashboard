@@ -1,17 +1,10 @@
 import { useTranslation } from "react-i18next";
 import { Table } from "@chakra-ui/react"
 import { UserRow } from "../UserRow";
-import { useQuery } from "@tanstack/react-query";
-import { getUsers } from "@/api/getUsers";
+import { type User } from "@/api/getUsers";
 
-
-export function UserList() {
+export function UserList({ users }: { users: User[] }) {
     const { t } = useTranslation("userList");
-
-    const { data } = useQuery({
-        queryKey: ["users"],
-        queryFn: getUsers
-    })
 
     return (
         <Table.Root
@@ -23,14 +16,14 @@ export function UserList() {
             overflow="hidden">
             <Table.Header >
                 <Table.Row >
-                    <Table.ColumnHeader>{t("name")}</Table.ColumnHeader>
-                    <Table.ColumnHeader>{t("age")}</Table.ColumnHeader>
-                    <Table.ColumnHeader>{t("email")}</Table.ColumnHeader>
-                    <Table.ColumnHeader textAlign="end">{t("actions")}</Table.ColumnHeader>
+                    <Table.ColumnHeader width="15%">{t("name")}</Table.ColumnHeader>
+                    <Table.ColumnHeader width="10%">{t("age")}</Table.ColumnHeader>
+                    <Table.ColumnHeader width="50%">{t("email")}</Table.ColumnHeader>
+                    <Table.ColumnHeader width="25%" textAlign="end">{t("actions")}</Table.ColumnHeader>
                 </Table.Row>
             </Table.Header>
             <Table.Body>
-                {data && data.users.map((user) => (
+                {users && users.map((user) => (
                     <UserRow key={user.id} user={user} />
                 ))}
             </Table.Body>

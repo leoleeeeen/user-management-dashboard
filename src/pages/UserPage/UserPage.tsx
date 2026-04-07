@@ -1,56 +1,18 @@
-import { Link, useParams } from "react-router-dom"
+import { Link } from "react-router-dom"
 import styles from "./UserPage.module.css"
 import { ArrowNarrowLeft } from "@/assets/icons/ArrowNarrowLeft";
 import { useTranslation } from "react-i18next"
 import { Box, Button, Center, Spinner, Text } from "@chakra-ui/react";
-import { useQuery } from "@tanstack/react-query";
-import { getUser } from "@/api/getUser";
-import { getUserImg } from "@/api/getUserImg";
-import { useEffect, useMemo } from "react";
+
+import { useUserPage } from "./hooks/useUserPage";
 
 export function UserPage() {
     const { t } = useTranslation("userPage");
-    const userId = useParams().userId;
-
-    if (!userId) {
-        throw new Error('userId is required');
-    }
-
     const {
-        data: user,
-        isLoading: userInfoIsLoading
-    } = useQuery({
-        queryKey: ["user", userId],
-        queryFn: () => getUser(userId),
-        placeholderData: undefined
-    })
-
-
-    const { data: blob } = useQuery({
-        enabled: !!user,
-        queryKey: ["userImg"],
-        queryFn: () => {
-            if (!user?.firstName) {
-                throw new Error("firstName is required");
-            }
-            return getUserImg(user?.firstName);
-        },
-    });
-
-    const imgUrl = useMemo(() => {
-        if (!blob) return undefined;
-        return URL.createObjectURL(blob);
-    }, [blob]);
-
-
-
-    useEffect(() => {
-        return () => {
-            if (imgUrl) {
-                URL.revokeObjectURL(imgUrl);
-            }
-        };
-    }, [imgUrl]);
+        userInfoIsLoading,
+        imgUrl,
+        user
+    } = useUserPage();
 
     return (
         <div className="content">
@@ -95,7 +57,6 @@ export function UserPage() {
                         </Link>
                     </div>
                 </>}
-
         </div >
     )
 }

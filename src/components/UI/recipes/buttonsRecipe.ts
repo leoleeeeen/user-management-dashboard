@@ -22,12 +22,15 @@ export const buttonRecipe = defineRecipe({
                     bg: "secondary.600",
                 },
             },
+            icon: {
+                bg: "none",
+                p: "0"
+            },
             lang: {
                 fontWeight: "600",
                 bg: "none",
                 color: "white",
-                px: "0",
-                py: "0"
+                p: "0"
             },
         },
         size: {
