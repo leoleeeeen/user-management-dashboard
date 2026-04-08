@@ -4,13 +4,13 @@ export const buttonRecipe = defineRecipe({
     base: {
         borderRadius: "lg",
         fontWeight: 400,
-        border: "none"
     },
     variants: {
         variant: {
             primary: {
                 bg: "primary.500",
                 color: "white",
+                border: "none",
                 _hover: {
                     bg: "primary.600",
                 },
@@ -18,6 +18,7 @@ export const buttonRecipe = defineRecipe({
             secondary: {
                 bg: "secondary.500",
                 color: "black",
+                border: "none",
                 _hover: {
                     bg: "secondary.600",
                 },

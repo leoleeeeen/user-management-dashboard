@@ -5,16 +5,19 @@ import { Box, Button, Group, Input } from "@chakra-ui/react";
 import { Cross } from "@/assets/icons/Cross";
 import { useUserListPage } from "./hooks/useUserListPage";
 
+import { PaginationComponent } from "@/components/Pagination";
+
 export function UserListPage() {
     const { t } = useTranslation("userListPage");
     const {
         searchInput,
         setSearchInput,
-        // page,
-        // setPage,
+        page,
+        pages,
+        setPage,
         data,
         handleSearchSubmit,
-        handleClear
+        handleClear,
     } = useUserListPage();
 
     return (
@@ -50,6 +53,7 @@ export function UserListPage() {
                 </Button>
             </Link>
             <UserList users={data?.users ?? []} />
+            <PaginationComponent page={page} pages={pages} setPage={setPage} />
         </Box >
     );
 }

@@ -11,27 +11,28 @@ export type User = {
 }
 
 export type UsersData = {
-    users: User[]
+    users: User[];
+    total: number;
 }
 
 type UsersParams = {
     debouncedSearch?: string;
-    page?: number;
+    skip?: number;
     limit?: number;
 }
 
-export const getUsers = ({ debouncedSearch, page, limit }: UsersParams) => {
+export const getUsers = ({ debouncedSearch, skip, limit }: UsersParams) => {
     if (debouncedSearch) {
         return httpClient<UsersData>({
             url: "/users/search",
             method: "GET",
-            params: { q: debouncedSearch, page, limit }
+            params: { q: debouncedSearch, skip, limit }
         })
     }
 
     return httpClient<UsersData>({
         url: "/users",
         method: "GET",
-        params: { page, limit }
+        params: { skip, limit }
     })
 }
