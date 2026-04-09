@@ -1,9 +1,15 @@
 import { useTranslation } from "react-i18next";
 import { Table } from "@chakra-ui/react"
-import { UserRow } from "../UserRow";
+import { EmptyRow, SkeletonRow, UserRow } from "../UserRow";
 import { type User } from "@/api/getUsers";
 
-export function UserList({ users }: { users: User[] }) {
+
+type UserListProps = {
+    isLoading: boolean;
+    filledData: User[]
+}
+
+export function UserList({ isLoading, filledData }: UserListProps) {
     const { t } = useTranslation("userList");
 
     return (
@@ -23,9 +29,19 @@ export function UserList({ users }: { users: User[] }) {
                 </Table.Row>
             </Table.Header>
             <Table.Body>
-                {users && users.map((user) => (
-                    <UserRow key={user.id} user={user} />
-                ))}
+                {filledData.map((user, i) => {
+                    if (isLoading) {
+                        return (
+                            <SkeletonRow key={i} />
+                        );
+                    }
+                    if (!user) {
+                        return (
+                            <EmptyRow key={i} />
+                        );
+                    }
+                    return <UserRow key={user.id} user={user} />;
+                })}
             </Table.Body>
         </Table.Root>
     )
