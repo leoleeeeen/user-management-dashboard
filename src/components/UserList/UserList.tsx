@@ -1,8 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { Table } from "@chakra-ui/react"
 import { EmptyRow, SkeletonRow, UserRow } from "../UserRow";
-import { type User } from "@/api/getUsers";
-
+import type { User } from "@/api/getUsers/types";
 
 type UserListProps = {
     isLoading: boolean;

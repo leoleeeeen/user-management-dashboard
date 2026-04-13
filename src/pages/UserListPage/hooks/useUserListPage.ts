@@ -1,5 +1,5 @@
-import { getUsers } from "@/api/getUsers";
-import { useQuery } from "@tanstack/react-query";
+import { useGetSearchUsers } from "@/api/getSearchUsers/useGetSearchUsers";
+import { useGetUsers } from "@/api/getUsers/useGetUsers";
 import { useState } from "react";
 
 
@@ -8,22 +8,18 @@ export function useUserListPage() {
     const [searchInput, setSearchInput] = useState('');
     const [page, setPage] = useState(1);
 
+    const isSearching = search.trim() !== "";
+
     const limit = 5;
     const skip = (page - 1) * limit;
 
-    const {
-        data,
-        isLoading,
-        isFetching,
-        isError,
-        refetch } = useQuery({
-            queryKey: ["users", { search, page }],
-            queryFn: () => getUsers({ search, skip, limit }),
-            placeholderData: (prev) => prev,
-        })
+    const usersQuery = useGetUsers({ skip, limit }, isSearching);
+    const searchUsersQuery = useGetSearchUsers({ search, skip, limit }, isSearching);
 
-    const users = data?.users ?? [];
-    const total = data?.total ?? 0;
+    const currentQuery = isSearching ? searchUsersQuery : usersQuery;
+
+    const users = currentQuery.data?.users ?? [];
+    const total = currentQuery.data?.total ?? 0;
     const pages = Math.ceil(total / limit);
     const showPagination = !(users.length <= 5 && pages === 1);
 
@@ -45,14 +41,13 @@ export function useUserListPage() {
         page,
         pages,
         setPage,
-        data,
         users,
         handleSearchSubmit,
         handleClear,
-        isLoading,
-        isFetching,
-        isError,
-        refetch,
+        isLoading: currentQuery.isLoading,
+        isFetching: currentQuery.isFetching,
+        isError: currentQuery.isError,
+        refetch: currentQuery.refetch,
         showPagination
     }
 }
