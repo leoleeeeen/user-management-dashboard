@@ -15,39 +15,40 @@ export function UserListPage() {
         page,
         pages,
         setPage,
-        filledData,
-        // data,
+        users,
         handleSearchSubmit,
         handleClear,
         isLoading,
         isError,
-        refetch
+        refetch,
+        showPagination
     } = useUserListPage();
 
-
     return (
-        <Box px="10" my="10" mx="auto" maxW="1200px">
+        <Box>
             <SearchBar
-                t={t}
                 handleSearchSubmit={handleSearchSubmit}
                 searchInput={searchInput}
                 setSearchInput={setSearchInput}
                 handleClear={handleClear} />
+
             <Link to={"createUser"}>
                 <Button variant="primary" mt="5" >
                     {t("create_user_button")}
                 </Button>
             </Link>
+
             {isError
                 ? <ErrorState refetch={refetch} />
                 : <>
                     <UserList
-                        filledData={filledData}
+                        users={users}
                         isLoading={isLoading} />
-                    <PaginationComponent
-                        page={page}
-                        pages={pages}
-                        setPage={setPage} />
+                    {showPagination &&
+                        <PaginationComponent
+                            page={page}
+                            pages={pages}
+                            setPage={setPage} />}
                 </>}
         </Box >
     );

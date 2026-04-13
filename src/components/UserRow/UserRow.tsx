@@ -17,6 +17,7 @@ export function UserRow({ user }: { user: User }) {
                             {t("view_button")}
                         </Button>
                     </Link>
+                    
                     <Link
                         to={`editUser/${user.id}`}
                         state={{ fromUserPage: false }}>

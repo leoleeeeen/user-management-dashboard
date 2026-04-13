@@ -1,14 +1,13 @@
 import { getUsers } from "@/api/getUsers";
-import { useDebounce } from "@/hooks/useDebounce";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
+
 
 export function useUserListPage() {
     const [search, setSearch] = useState("");
     const [searchInput, setSearchInput] = useState('');
     const [page, setPage] = useState(1);
 
-    const debouncedSearch = useDebounce(search, 300);
     const limit = 5;
     const skip = (page - 1) * limit;
 
@@ -18,20 +17,15 @@ export function useUserListPage() {
         isFetching,
         isError,
         refetch } = useQuery({
-            queryKey: ["users", { debouncedSearch, page }],
-            queryFn: () => getUsers({ debouncedSearch, skip, limit }),
+            queryKey: ["users", { search, page }],
+            queryFn: () => getUsers({ search, skip, limit }),
             placeholderData: (prev) => prev,
         })
 
     const users = data?.users ?? [];
     const total = data?.total ?? 0;
     const pages = Math.ceil(total / limit);
-
-    const filledData = isLoading
-        ? Array.from({ length: limit })
-        : users.length < limit
-            ? [...users, ...Array(limit - users.length).fill(null)]
-            : users;
+    const showPagination = !(users.length <= 5 && pages === 1);
 
     const handleSearchSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -52,12 +46,13 @@ export function useUserListPage() {
         pages,
         setPage,
         data,
-        filledData,
+        users,
         handleSearchSubmit,
         handleClear,
         isLoading,
         isFetching,
         isError,
-        refetch
+        refetch,
+        showPagination
     }
 }

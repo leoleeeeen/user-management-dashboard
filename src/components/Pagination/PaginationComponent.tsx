@@ -23,6 +23,7 @@ export function PaginationComponent({ page, pages, setPage }: PaginationProps) {
                             <ChevronLeft />
                         </IconButton>
                     </Pagination.PrevTrigger>
+
                     <Pagination.Items
                         render={(item) => (
                             <IconButton
@@ -31,6 +32,7 @@ export function PaginationComponent({ page, pages, setPage }: PaginationProps) {
                             </IconButton>
                         )}
                     />
+
                     <Pagination.NextTrigger asChild>
                         <IconButton>
                             <ChevronRight />

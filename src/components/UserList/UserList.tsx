@@ -6,10 +6,10 @@ import { type User } from "@/api/getUsers";
 
 type UserListProps = {
     isLoading: boolean;
-    filledData: User[]
+    users: User[]
 }
 
-export function UserList({ isLoading, filledData }: UserListProps) {
+export function UserList({ isLoading, users }: UserListProps) {
     const { t } = useTranslation("userList");
 
     return (
@@ -28,8 +28,9 @@ export function UserList({ isLoading, filledData }: UserListProps) {
                     <Table.ColumnHeader width="25%" textAlign="end">{t("actions")}</Table.ColumnHeader>
                 </Table.Row>
             </Table.Header>
+
             <Table.Body>
-                {filledData.map((user, i) => {
+                {users.map((user, i) => {
                     if (isLoading) {
                         return (
                             <SkeletonRow key={i} />

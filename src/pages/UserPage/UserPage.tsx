@@ -15,7 +15,7 @@ export function UserPage() {
     } = useUserPage();
 
     return (
-        <div className="content">
+        <>
             <Link to={"/"}>
                 <Button
                     variant="secondary">
@@ -23,13 +23,17 @@ export function UserPage() {
                     {t("back_button")}
                 </Button>
             </Link>
+
             {userInfoIsLoading
                 ? <Center h="full" mt="150px">
                     <Spinner color="primary.500" />
                 </Center>
                 :
                 <>
-                    <h1 className="heading_1">{t("page_heading", { name: `${user?.firstName}` })}</h1>
+                    <h1 className="heading_1">
+                        {t("page_heading", { name: `${user?.firstName}` })}
+                    </h1>
+
                     <div className={styles.user_card}>
                         <Box display="flex">
                             <Box
@@ -37,9 +41,12 @@ export function UserPage() {
                                 height="150px"
                                 borderRadius="lg"
                                 bgColor="gray.300"
-                                bgImage={`url(${imgUrl})`}></Box>
+                                bgImage={`url(${imgUrl})`}>
+                            </Box>
+
                             <Box ml="4">
                                 <Text fontSize="2xl" fontWeight="600">{user?.firstName} {user?.lastName}</Text>
+
                                 <Box mt="2">
                                     <Text><Text as="span" fontWeight="medium">{t("age")}</Text>{user?.age}</Text>
                                     <Text><Text as="span" fontWeight="medium">{t("email")}</Text>{user?.email}</Text>
@@ -57,7 +64,7 @@ export function UserPage() {
                         </Link>
                     </div>
                 </>}
-        </div >
+        </ >
     )
 }
 

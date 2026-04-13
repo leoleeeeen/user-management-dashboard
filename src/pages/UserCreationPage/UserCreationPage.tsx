@@ -7,7 +7,7 @@ import { Button, Text } from "@chakra-ui/react";
 export function UserCreationPage() {
     const { t } = useTranslation("userCreationPage");
     return (
-        <div className="content">
+        <>
             <Link to={"/"}>
                 <Button
                     variant="secondary">
@@ -15,9 +15,13 @@ export function UserCreationPage() {
                     {t("back_button")}
                 </Button>
             </Link>
-            <Text className="heading_1 text_center">{t("page_heading")}</Text>
+
+            <Text className="heading_1 text_center">
+                {t("page_heading")}
+            </Text>
+
             <UserForm />
-        </div >
+        </ >
     )
 }
 

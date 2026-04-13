@@ -14,6 +14,7 @@ export function Header() {
                         User Management Dashboard
                     </Text>
                 </Link>
+
                 <div className={styles.lang_buttons}>
                     <Button
                         variant="lang"
@@ -23,7 +24,9 @@ export function Header() {
                             : ""}>
                         EN
                     </Button>
+
                     <Text color="white" as="span">/</Text>
+
                     <Button
                         variant="lang"
                         onClick={() => i18n.changeLanguage("ru")}

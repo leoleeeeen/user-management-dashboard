@@ -16,17 +16,17 @@ export type UsersData = {
 }
 
 type UsersParams = {
-    debouncedSearch?: string;
+    search?: string;
     skip?: number;
     limit?: number;
 }
 
-export const getUsers = ({ debouncedSearch, skip, limit }: UsersParams) => {
-    if (debouncedSearch) {
+export const getUsers = ({ search, skip, limit }: UsersParams) => {
+    if (search) {
         return httpClient<UsersData>({
             url: "/users/search",
             method: "GET",
-            params: { q: debouncedSearch, skip, limit }
+            params: { q: search, skip, limit }
         })
     }
 

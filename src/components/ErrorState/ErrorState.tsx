@@ -12,10 +12,13 @@ export function ErrorState({ refetch }: ErrorStateProps) {
             <Text fontSize="xl" fontWeight="600">
                 Something went wrong
             </Text>
+
             <Button
                 variant="primary"
                 onClick={() => refetch()}
-                mt="2">Retry</Button>
+                mt="2">
+                Retry
+            </Button>
         </Center>
     )
 }

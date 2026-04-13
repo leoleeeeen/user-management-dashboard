@@ -15,7 +15,6 @@ export const useInitQueryClient = () => {
     );
 }
 
-
 const handleGlobalError = (error: Error) => {
     toaster.create({
         id: "global-error",

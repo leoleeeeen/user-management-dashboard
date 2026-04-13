@@ -15,7 +15,7 @@ export function UserEditionPage() {
     }
 
     return (
-        <div className="content">
+        <>
             <Link
                 to={state.fromUserPage
                     ? `/userPage/${userId}`
@@ -26,9 +26,11 @@ export function UserEditionPage() {
                     {t("back_button")}
                 </Button>
             </Link>
+
             <Text className="heading_1 text_center">{t("page_heading")}</Text>
+
             <UserForm />
-        </div>
+        </>
     )
 }
 
