@@ -35,8 +35,13 @@ export function UserPage() {
                     </h1>
 
                     <div className={styles.user_card}>
-                        <Box display="flex">
+                        <Box
+                            display="flex"
+                            flexDirection={{ base: "column", md: "row" }}
+                            gap="4"
+                        >
                             <Box
+                                alignSelf={{ base: "center", md: "auto" }}
                                 width="150px"
                                 height="150px"
                                 borderRadius="lg"
@@ -44,7 +49,7 @@ export function UserPage() {
                                 bgImage={`url(${imgUrl})`}>
                             </Box>
 
-                            <Box ml="4">
+                            <Box >
                                 <Text fontSize="2xl" fontWeight="600">{user?.firstName} {user?.lastName}</Text>
 
                                 <Box mt="2">
@@ -57,8 +62,8 @@ export function UserPage() {
                         <Link
                             to={`/editUser/${user?.id}`}
                             state={{ fromUserPage: true }}
-                            className={styles.edit_button}>
-                            <Button variant="primary">
+                            className={`${styles.edit_button} link_wide_button`}>
+                            <Button variant="primary" width="100%">
                                 {t("edit_button")}
                             </Button>
                         </Link>

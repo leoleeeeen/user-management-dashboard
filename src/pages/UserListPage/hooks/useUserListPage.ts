@@ -19,7 +19,7 @@ export function useUserListPage() {
 
     const currentQuery = isSearching ? searchUsersQuery : usersQuery;
 
-    const isMobile = useBreakpointValue({ base: true, md: false });
+    const isMobile = useBreakpointValue({ base: true, md: false }, { fallback: "md" });
     const isLoading = currentQuery.isLoading;
 
     const users = currentQuery.data?.users ?? [];

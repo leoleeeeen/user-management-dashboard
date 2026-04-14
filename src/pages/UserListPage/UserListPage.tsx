@@ -26,6 +26,8 @@ export function UserListPage() {
         isMobile
     } = useUserListPage();
 
+    console.log(isMobile);
+
     return (
         <Box>
             <SearchBar

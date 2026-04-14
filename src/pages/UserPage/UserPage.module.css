@@ -5,8 +5,19 @@
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     display: flex;
     justify-content: space-between;
+    gap: 20px;
 }
 
 .edit_button {
     align-self: end;
+}
+
+@media (max-width: 767px) {
+    .user_card {
+        flex-direction: column;
+    }
+
+    .edit_button {
+        align-self: auto;
+    }
 }
