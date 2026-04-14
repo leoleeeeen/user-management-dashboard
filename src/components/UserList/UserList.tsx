@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Table } from "@chakra-ui/react"
-import { EmptyRow, SkeletonRow, UserRow } from "../UserRow";
+import { SkeletonRow, UserRow } from "../UserRow";
 import type { User } from "@/api/getUsers/types";
 
 type UserListProps = {
@@ -36,9 +36,7 @@ export function UserList({ isLoading, users }: UserListProps) {
                         );
                     }
                     if (!user) {
-                        return (
-                            <EmptyRow key={i} />
-                        );
+                        return;
                     }
                     return <UserRow key={user.id} user={user} />;
                 })}

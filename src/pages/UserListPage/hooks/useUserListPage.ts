@@ -17,10 +17,18 @@ export function useUserListPage() {
     const searchUsersQuery = useGetSearchUsers({ search, skip, limit }, isSearching);
 
     const currentQuery = isSearching ? searchUsersQuery : usersQuery;
+    const isLoading = currentQuery.isLoading;
 
     const users = currentQuery.data?.users ?? [];
     const total = currentQuery.data?.total ?? 0;
     const pages = Math.ceil(total / limit);
+
+    const filledData = isLoading
+        ? Array.from({ length: limit })
+        : users.length < limit
+            ? [...users, ...Array(limit - users.length).fill(null)]
+            : users;
+
     const showPagination = !(users.length <= 5 && pages === 1);
 
     const handleSearchSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
@@ -41,10 +49,10 @@ export function useUserListPage() {
         page,
         pages,
         setPage,
-        users,
+        users: filledData,
         handleSearchSubmit,
         handleClear,
-        isLoading: currentQuery.isLoading,
+        isLoading,
         isFetching: currentQuery.isFetching,
         isError: currentQuery.isError,
         refetch: currentQuery.refetch,
