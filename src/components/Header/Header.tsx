@@ -10,7 +10,7 @@ export function Header() {
         <header className={styles.header}>
             <div className={styles.header_container}>
                 <Link to="/">
-                    <Text color="white" fontWeight="500" fontSize="2xl">
+                    <Text color="white" fontWeight="500" fontSize={{ base: "lg", md: "2xl" }}>
                         User Management Dashboard
                     </Text>
                 </Link>

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 import { Box, Button, Table } from "@chakra-ui/react";
-import type { User } from "@/api/getUsers";
+import type { User } from "@/api/getUsers/types";
 
 export function UserRow({ user }: { user: User }) {
     const { t } = useTranslation("userRow");
@@ -17,7 +17,7 @@ export function UserRow({ user }: { user: User }) {
                             {t("view_button")}
                         </Button>
                     </Link>
-                    
+
                     <Link
                         to={`editUser/${user.id}`}
                         state={{ fromUserPage: false }}>

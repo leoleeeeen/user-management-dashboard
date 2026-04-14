@@ -16,3 +16,9 @@
 .lang_btn_active {
     text-decoration: underline;
 }
+
+@media (max-width: 767px) {
+    .header {
+        padding-inline: 20px;
+    }
+}

@@ -1,6 +1,6 @@
 import { ChevronLeft } from "@/assets/icons/ChevronLeft";
 import { ChevronRight } from "@/assets/icons/ChevronRight";
-import { Center, ButtonGroup, IconButton, Pagination } from "@chakra-ui/react";
+import { Center, ButtonGroup, IconButton, Pagination, useBreakpointValue } from "@chakra-ui/react";
 
 type PaginationProps = {
     page: number;
@@ -9,29 +9,33 @@ type PaginationProps = {
 }
 
 export function PaginationComponent({ page, pages, setPage }: PaginationProps) {
+    const isMobile = useBreakpointValue({ base: true, md: false });
+
     return (
-        <Center mt="5">
+        <Center mt="8">
             <Pagination.Root
                 count={pages}
                 pageSize={1}
                 page={page}
                 onPageChange={(e) => setPage(e.page)}
             >
-                <ButtonGroup variant="ghost" size="lg">
+                <ButtonGroup variant="ghost" size={{ base: "md", md: "lg" }}>
                     <Pagination.PrevTrigger asChild>
                         <IconButton>
                             <ChevronLeft />
                         </IconButton>
                     </Pagination.PrevTrigger>
 
-                    <Pagination.Items
-                        render={(item) => (
-                            <IconButton
-                                variant={item.value === page ? "outline" : "ghost"}>
-                                {item.value}
-                            </IconButton>
-                        )}
-                    />
+                    {isMobile
+                        ? <Pagination.PageText />
+                        : <Pagination.Items
+                            render={(item) => (
+                                <IconButton
+                                    variant={item.value === page ? "outline" : "ghost"}>
+                                    {item.value}
+                                </IconButton>
+                            )}
+                        />}
 
                     <Pagination.NextTrigger asChild>
                         <IconButton>

@@ -6,6 +6,7 @@ import { useUserListPage } from "./hooks/useUserListPage";
 import { PaginationComponent } from "@/components/Pagination";
 import { ErrorState } from "@/components/ErrorState";
 import { SearchBar } from "@/components/SearchBar";
+import { UserListMobile } from "@/components/UserList/UserListMobile";
 
 export function UserListPage() {
     const { t } = useTranslation("userListPage");
@@ -21,7 +22,8 @@ export function UserListPage() {
         isLoading,
         isError,
         refetch,
-        showPagination
+        showPagination,
+        isMobile
     } = useUserListPage();
 
     return (
@@ -41,10 +43,14 @@ export function UserListPage() {
             {isError
                 ? <ErrorState refetch={refetch} />
                 : <>
-                    <UserList
-                        users={users}
-                        isLoading={isLoading} />
-                    {showPagination &&
+                    {isMobile
+                        ? <UserListMobile
+                            users={users}
+                            isLoading={isLoading} />
+                        : <UserList
+                            users={users}
+                            isLoading={isLoading} />}
+                    {showPagination && !isLoading &&
                         <PaginationComponent
                             page={page}
                             pages={pages}

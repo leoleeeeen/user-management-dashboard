@@ -1,5 +1,6 @@
 import { useGetSearchUsers } from "@/api/getSearchUsers/useGetSearchUsers";
 import { useGetUsers } from "@/api/getUsers/useGetUsers";
+import { useBreakpointValue } from "@chakra-ui/react";
 import { useState } from "react";
 
 
@@ -17,6 +18,8 @@ export function useUserListPage() {
     const searchUsersQuery = useGetSearchUsers({ search, skip, limit }, isSearching);
 
     const currentQuery = isSearching ? searchUsersQuery : usersQuery;
+
+    const isMobile = useBreakpointValue({ base: true, md: false });
     const isLoading = currentQuery.isLoading;
 
     const users = currentQuery.data?.users ?? [];
@@ -56,6 +59,7 @@ export function useUserListPage() {
         isFetching: currentQuery.isFetching,
         isError: currentQuery.isError,
         refetch: currentQuery.refetch,
-        showPagination
+        showPagination,
+        isMobile
     }
 }

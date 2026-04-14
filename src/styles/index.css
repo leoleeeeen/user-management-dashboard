@@ -30,3 +30,14 @@ body {
     padding-inline: 40px;
     margin: 40px auto;
 }
+
+.link_wide_button {
+    display: block;
+    width: 100%;
+}
+
+@media (max-width: 767px) {
+    .content {
+        padding-inline: 20px;
+    }
+}

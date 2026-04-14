@@ -3,7 +3,7 @@ import { Table } from "@chakra-ui/react"
 import { SkeletonRow, UserRow } from "../UserRow";
 import type { User } from "@/api/getUsers/types";
 
-type UserListProps = {
+export type UserListProps = {
     isLoading: boolean;
     users: User[]
 }
