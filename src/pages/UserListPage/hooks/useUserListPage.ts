@@ -7,14 +7,14 @@ export function useUserListPage() {
     const [search, setSearch] = useState("");
     const [searchInput, setSearchInput] = useState('');
     const [page, setPage] = useState(1);
+    const [limit, setLimit] = useState(5);
 
     const isSearching = search.trim() !== "";
 
-    const limit = 5;
     const skip = (page - 1) * limit;
 
-    const usersQuery = useGetUsers({ skip, limit }, isSearching);
-    const searchUsersQuery = useGetSearchUsers({ search, skip, limit }, isSearching);
+    const usersQuery = useGetUsers({ skip, limit: limit }, isSearching);
+    const searchUsersQuery = useGetSearchUsers({ search, skip, limit: limit }, isSearching);
 
     const currentQuery = isSearching ? searchUsersQuery : usersQuery;
 
@@ -30,7 +30,7 @@ export function useUserListPage() {
             ? [...users, ...Array(limit - users.length).fill(null)]
             : users;
 
-    const showPagination = !(users.length === 0 || (users.length <= 5 && pages === 1));
+    const showPagination = !(users.length === 0 || (users.length <= limit && pages === 1));
 
     const handleSearchSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -50,6 +50,8 @@ export function useUserListPage() {
         page,
         pages,
         setPage,
+        limit,
+        setLimit,
         users: filledData,
         handleSearchSubmit,
         handleClear,
