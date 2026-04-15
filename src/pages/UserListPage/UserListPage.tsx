@@ -14,9 +14,8 @@ export function UserListPage() {
         setSearchInput,
         page,
         pages,
-        limit,
-        setLimit,
-        setPage,
+        pageSize,
+        updateParams,
         users,
         handleSearchSubmit,
         handleClear,
@@ -50,9 +49,9 @@ export function UserListPage() {
                         <PaginationComponent
                             page={page}
                             pages={pages}
-                            setPage={setPage}
-                            limit={limit}
-                            setLimit={setLimit} />}
+                            updateParams={updateParams}
+                            pageSize={pageSize}
+                        />}
                 </>}
         </Box >
     );

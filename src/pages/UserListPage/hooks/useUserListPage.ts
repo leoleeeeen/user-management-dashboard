@@ -1,20 +1,48 @@
 import { useGetSearchUsers } from "@/api/getSearchUsers/useGetSearchUsers";
 import { useGetUsers } from "@/api/getUsers/useGetUsers";
+import { ROW_LIMIT } from "@/components/Pagination/LimitListCollection";
 import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
+type QueryParams = {
+    page?: number;
+    pageSize?: number;
+    search?: string;
+};
+
+export type UpdateParams = Partial<QueryParams>;
 
 export function useUserListPage() {
-    const [search, setSearch] = useState("");
     const [searchInput, setSearchInput] = useState('');
-    const [page, setPage] = useState(1);
-    const [limit, setLimit] = useState(5);
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    const page = Number(searchParams.get("page")) || 1;
+    const pageSize = Number(searchParams.get("pageSize")) || ROW_LIMIT[0];
+    const search = searchParams.get("search") || "";
+
+    const updateParams = (newParams: UpdateParams) => {
+        const params: QueryParams = {
+            page,
+            pageSize,
+            search,
+            ...newParams,
+        };
+
+        const cleanedParams: Record<string, string> = Object.fromEntries(
+            Object.entries(params)
+                .filter(([, value]) => value !== undefined && value !== "")
+                .map(([key, value]) => [key, String(value)])
+        );
+
+        setSearchParams(cleanedParams);
+    };
 
     const isSearching = search.trim() !== "";
 
-    const skip = (page - 1) * limit;
+    const skip = (page - 1) * pageSize;
 
-    const usersQuery = useGetUsers({ skip, limit: limit }, isSearching);
-    const searchUsersQuery = useGetSearchUsers({ search, skip, limit: limit }, isSearching);
+    const usersQuery = useGetUsers({ skip, limit: pageSize }, isSearching);
+    const searchUsersQuery = useGetSearchUsers({ search, skip, limit: pageSize }, isSearching);
 
     const currentQuery = isSearching ? searchUsersQuery : usersQuery;
 
@@ -22,26 +50,26 @@ export function useUserListPage() {
 
     const users = currentQuery.data?.users ?? [];
     const total = currentQuery.data?.total ?? 0;
-    const pages = Math.ceil(total / limit);
+    const pages = Math.ceil(total / pageSize);
 
     const filledData = isLoading
-        ? Array.from({ length: limit })
-        : users.length < limit
-            ? [...users, ...Array(limit - users.length).fill(null)]
+        ? Array.from({ length: pageSize })
+        : users.length < pageSize
+            ? [...users, ...Array(pageSize - users.length).fill(null)]
             : users;
 
-    const showPagination = !(users.length === 0 || (users.length <= limit && pages === 1));
+    const showPagination = !(users.length === 0
+        // || (users.length <= pageSize && pages === 1)
+    );
 
     const handleSearchSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setPage(1);
-        setSearch(searchInput);
+        updateParams({ page: 1, search: searchInput })
     }
 
     const handleClear = () => {
         setSearchInput('');
-        setSearch('');
-        setPage(1);
+        updateParams({ page: 1, search: '' })
     };
 
     return {
@@ -49,9 +77,8 @@ export function useUserListPage() {
         setSearchInput,
         page,
         pages,
-        setPage,
-        limit,
-        setLimit,
+        updateParams,
+        pageSize,
         users: filledData,
         handleSearchSubmit,
         handleClear,

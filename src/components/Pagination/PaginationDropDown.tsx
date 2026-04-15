@@ -1,18 +1,13 @@
 import { Portal, Select } from "@chakra-ui/react";
 import { rowLimitListCollection } from "./LimitListCollection";
+import type { UpdateParams } from "@/pages/UserListPage/hooks/useUserListPage";
 
 type PaginationDropDownProps = {
-    limit: number;
-    setLimit: React.Dispatch<React.SetStateAction<number>>;
-    setPage: React.Dispatch<React.SetStateAction<number>>;
+    pageSize: number;
+    updateParams: (params: UpdateParams) => void;
 }
 
-export function PaginationDropDown({ limit, setLimit, setPage }: PaginationDropDownProps) {
-
-    const handleSetLimit = (value: number) => {
-        setLimit(value);
-        setPage(1);
-    }
+export function PaginationDropDown({ pageSize, updateParams }: PaginationDropDownProps) {
 
     return (
         <Select.Root collection={rowLimitListCollection} size="md" width="80px">
@@ -20,7 +15,7 @@ export function PaginationDropDown({ limit, setLimit, setPage }: PaginationDropD
 
             <Select.Control >
                 <Select.Trigger rounded="lg">
-                    <Select.ValueText placeholder={limit.toString()} />
+                    <Select.ValueText placeholder={pageSize.toString()} />
                 </Select.Trigger>
 
                 <Select.IndicatorGroup>
@@ -32,9 +27,11 @@ export function PaginationDropDown({ limit, setLimit, setPage }: PaginationDropD
                 <Select.Positioner>
                     <Select.Content>
                         {rowLimitListCollection.items.map((limit) => (
-                            <Select.Item item={limit} key={limit.value} onClick={() => handleSetLimit(limit.value)}>
+                            <Select.Item
+                                item={limit}
+                                key={limit.value}
+                                onClick={() => updateParams({ page: 1, pageSize: limit.value })}>
                                 {limit.label}
-
                                 <Select.ItemIndicator />
                             </Select.Item>
                         ))}
