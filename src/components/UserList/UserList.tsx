@@ -5,10 +5,11 @@ import type { User } from "@/api/getUsers/types";
 
 export type UserListProps = {
     isLoading: boolean;
-    users: User[]
+    users: User[],
+    pageSize: number;
 }
 
-export function UserList({ isLoading, users }: UserListProps) {
+export function UserList({ isLoading, users, pageSize }: UserListProps) {
     const { t } = useTranslation("userList");
 
     return (
@@ -29,7 +30,7 @@ export function UserList({ isLoading, users }: UserListProps) {
             </Table.Header>
 
             <Table.Body>
-                {users.map((user, i) => {
+                {/* {users.map((user, i) => {
                     if (isLoading) {
                         return (
                             <SkeletonRow key={i} />
@@ -39,7 +40,18 @@ export function UserList({ isLoading, users }: UserListProps) {
                         return;
                     }
                     return <UserRow key={user.id} user={user} />;
-                })}
+                })} */}
+
+                {isLoading
+                    ? Array.from({ length: pageSize }).map((_, i) =>
+                        <SkeletonRow key={i} />)
+                    : users.map((user) => {
+                        if (!user) {
+                            return;
+                        }
+                        return <UserRow key={user.id} user={user} />
+                    })
+                }
             </Table.Body>
         </Table.Root>
     )

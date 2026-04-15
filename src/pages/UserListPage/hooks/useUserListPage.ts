@@ -52,11 +52,6 @@ export function useUserListPage() {
     const total = currentQuery.data?.total ?? 0;
     const pages = Math.ceil(total / pageSize);
 
-    const filledData = isLoading
-        ? Array.from({ length: pageSize })
-        : users.length < pageSize
-            ? [...users, ...Array(pageSize - users.length).fill(null)]
-            : users;
 
     const showPagination = !(users.length === 0
         // || (users.length <= pageSize && pages === 1)
@@ -79,7 +74,7 @@ export function useUserListPage() {
         pages,
         updateParams,
         pageSize,
-        users: filledData,
+        users,
         handleSearchSubmit,
         handleClear,
         isLoading,

@@ -42,9 +42,19 @@ export function UserListPage() {
             {isError
                 ? <ErrorState refetch={refetch} />
                 : <>
-                    <UserListResponsive
-                        isLoading={isLoading}
-                        users={users} />
+                    {isLoading ? (
+                        <UserListResponsive
+                            isLoading={true}
+                            users={[]}
+                            pageSize={pageSize}
+                        />
+                    ) : users?.length ? (
+                        <UserListResponsive
+                            isLoading={false}
+                            users={users}
+                            pageSize={pageSize}
+                        />
+                    ) : null}
                     {showPagination && !isLoading &&
                         <PaginationComponent
                             page={page}
