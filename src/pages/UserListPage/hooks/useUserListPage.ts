@@ -1,6 +1,5 @@
 import { useGetSearchUsers } from "@/api/getSearchUsers/useGetSearchUsers";
 import { useGetUsers } from "@/api/getUsers/useGetUsers";
-import { useBreakpointValue } from "@chakra-ui/react";
 import { useState } from "react";
 
 
@@ -19,7 +18,6 @@ export function useUserListPage() {
 
     const currentQuery = isSearching ? searchUsersQuery : usersQuery;
 
-    const isMobile = useBreakpointValue({ base: true, md: false }, { fallback: "md" });
     const isLoading = currentQuery.isLoading;
 
     const users = currentQuery.data?.users ?? [];
@@ -32,7 +30,7 @@ export function useUserListPage() {
             ? [...users, ...Array(limit - users.length).fill(null)]
             : users;
 
-    const showPagination = !(users.length <= 5 && pages === 1);
+    const showPagination = !(users.length === 0 || (users.length <= 5 && pages === 1));
 
     const handleSearchSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -60,6 +58,5 @@ export function useUserListPage() {
         isError: currentQuery.isError,
         refetch: currentQuery.refetch,
         showPagination,
-        isMobile
     }
 }

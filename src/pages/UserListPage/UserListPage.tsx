@@ -1,12 +1,11 @@
 import { Link } from "react-router-dom"
-import { UserList } from "@/components/UserList"
+import { UserListResponsive } from "@/components/UserList"
 import { useTranslation } from "react-i18next"
 import { Box, Button } from "@chakra-ui/react";
 import { useUserListPage } from "./hooks/useUserListPage";
 import { PaginationComponent } from "@/components/Pagination";
 import { ErrorState } from "@/components/ErrorState";
 import { SearchBar } from "@/components/SearchBar";
-import { UserListMobile } from "@/components/UserList/UserListMobile";
 
 export function UserListPage() {
     const { t } = useTranslation("userListPage");
@@ -23,10 +22,7 @@ export function UserListPage() {
         isError,
         refetch,
         showPagination,
-        isMobile
     } = useUserListPage();
-
-    console.log(isMobile);
 
     return (
         <Box>
@@ -45,13 +41,9 @@ export function UserListPage() {
             {isError
                 ? <ErrorState refetch={refetch} />
                 : <>
-                    {isMobile
-                        ? <UserListMobile
-                            users={users}
-                            isLoading={isLoading} />
-                        : <UserList
-                            users={users}
-                            isLoading={isLoading} />}
+                    <UserListResponsive
+                        isLoading={isLoading}
+                        users={users} />
                     {showPagination && !isLoading &&
                         <PaginationComponent
                             page={page}

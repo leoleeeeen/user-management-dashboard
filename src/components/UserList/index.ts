@@ -1,1 +1,1 @@
-export { UserList } from "./UserList"
+export { UserListResponsive } from "./UserListResponsive"
