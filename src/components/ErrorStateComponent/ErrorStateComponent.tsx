@@ -1,13 +1,13 @@
-import type { UsersData } from "@/api/getUsers/types";
+import type { User, UsersData } from "@/api/getUsers/types";
 import { Center, Button, EmptyState, VStack } from "@chakra-ui/react";
 import type { QueryObserverResult, RefetchOptions } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 
 type ErrorStateProps = {
-    refetch: (options?: RefetchOptions) => Promise<QueryObserverResult<UsersData, Error>>;
+    refetch: (options?: RefetchOptions) => Promise<QueryObserverResult<User | UsersData, Error>>;
 }
 
-export function ErrorState({ refetch }: ErrorStateProps) {
+export function ErrorStateComponent({ refetch }: ErrorStateProps) {
     const { t } = useTranslation("errorState")
 
     return (

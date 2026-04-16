@@ -12,12 +12,17 @@ export function useUserPage() {
 
     const {
         data: user,
-        isLoading: userInfoIsLoading
+        isLoading: userInfoIsLoading,
+        isError,
+        refetch
     } = useGetUser(userId);
 
     const userFirstName = user?.firstName ?? "";
 
-    const { data: blob } = useGetUserImg(userFirstName);
+    const {
+        data: blob,
+        isLoading: userImgIsLoading
+    } = useGetUserImg(userFirstName);
 
     const imgUrl = useMemo(() => {
         if (!blob) return undefined;
@@ -34,6 +39,9 @@ export function useUserPage() {
 
     return {
         userInfoIsLoading,
+        userImgIsLoading,
+        isError,
+        refetch,
         imgUrl,
         user
     }

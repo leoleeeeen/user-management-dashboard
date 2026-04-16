@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next"
 import { Box, Button } from "@chakra-ui/react";
 import { useUserListPage } from "./hooks/useUserListPage";
 import { PaginationComponent } from "@/components/Pagination";
-import { ErrorState } from "@/components/ErrorStateComponent";
+import { ErrorStateComponent } from "@/components/ErrorStateComponent";
 import { SearchBar } from "@/components/SearchBar";
 import { EmptyStateComponent } from "@/components/EmptyStateComponent/EmptyStateComponent";
 
@@ -44,7 +44,7 @@ export function UserListPage() {
             </Link>
 
             {isError
-                ? <ErrorState refetch={refetch} />
+                ? <ErrorStateComponent refetch={refetch} />
                 : <>
                     {isLoading ? (
                         <UserListResponsive
