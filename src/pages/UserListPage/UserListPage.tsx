@@ -4,8 +4,9 @@ import { useTranslation } from "react-i18next"
 import { Box, Button } from "@chakra-ui/react";
 import { useUserListPage } from "./hooks/useUserListPage";
 import { PaginationComponent } from "@/components/Pagination";
-import { ErrorState } from "@/components/ErrorState";
+import { ErrorState } from "@/components/ErrorStateComponent";
 import { SearchBar } from "@/components/SearchBar";
+import { EmptyStateComponent } from "@/components/EmptyStateComponent/EmptyStateComponent";
 
 export function UserListPage() {
     const { t } = useTranslation("userListPage");
@@ -20,6 +21,8 @@ export function UserListPage() {
         handleSearchSubmit,
         handleClear,
         isLoading,
+        isFetching,
+        isSearching,
         isError,
         refetch,
         showPagination,
@@ -31,7 +34,8 @@ export function UserListPage() {
                 handleSearchSubmit={handleSearchSubmit}
                 searchInput={searchInput}
                 setSearchInput={setSearchInput}
-                handleClear={handleClear} />
+                handleClear={handleClear}
+                isLoading={isSearching ? isLoading : false} />
 
             <Link to={"createUser"}>
                 <Button variant="primary" mt="5" >
@@ -45,16 +49,18 @@ export function UserListPage() {
                     {isLoading ? (
                         <UserListResponsive
                             isLoading={true}
+                            isFetching={isFetching}
                             users={[]}
                             pageSize={pageSize}
                         />
                     ) : users?.length ? (
                         <UserListResponsive
                             isLoading={false}
+                            isFetching={isFetching}
                             users={users}
                             pageSize={pageSize}
                         />
-                    ) : null}
+                    ) : <EmptyStateComponent />}
                     {showPagination && !isLoading &&
                         <PaginationComponent
                             page={page}

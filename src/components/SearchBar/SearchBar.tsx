@@ -1,5 +1,5 @@
 import { Cross } from "@/assets/icons/Cross";
-import { Group, Input, Button } from "@chakra-ui/react";
+import { Group, Input, Button, Spinner } from "@chakra-ui/react";
 import type { Dispatch, SetStateAction } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -8,13 +8,15 @@ type SearchBarProps = {
     searchInput: string;
     setSearchInput: Dispatch<SetStateAction<string>>;
     handleClear: () => void;
+    isLoading: boolean;
 }
 
 export function SearchBar({
     handleSearchSubmit,
     searchInput,
     setSearchInput,
-    handleClear }: SearchBarProps) {
+    handleClear,
+    isLoading }: SearchBarProps) {
     const { t } = useTranslation("userListPage");
 
     return (
@@ -37,6 +39,11 @@ export function SearchBar({
                 </Button>
 
                 <Button
+                    loading={isLoading ? true : false}
+                    spinner={<Spinner size="sm" color="gray" />}
+                    disabled={isLoading ? true : false}
+                    _disabled={{ opacity: 1 }}
+                    width="18"
                     type="submit"
                     variant="secondary"
                     alignSelf="stretch">
