@@ -17,9 +17,10 @@ export const httpClient = async <T>(
     } catch (error) {
 
         if (axios.isAxiosError(error)) {
-            throw new Error(error.message ?? "Server error");
+            // throw new Error(error.message ?? "Server error");
+            throw error;
         }
 
-        throw new Error("Network error");
+        throw error;
     }
 }; 

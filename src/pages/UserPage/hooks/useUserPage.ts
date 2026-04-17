@@ -1,5 +1,7 @@
 import { useGetUser } from "@/api/getUser/useGetUser";
 import { useGetUserImg } from "@/api/getUserImg/useGetUserImg";
+import type { ApiError } from "@/api/getUsers/types";
+import type { AxiosError } from "axios";
 import { useMemo, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
@@ -14,8 +16,12 @@ export function useUserPage() {
         data: user,
         isLoading: userInfoIsLoading,
         isError,
+        error,
         refetch
     } = useGetUser(userId);
+
+    const axiosError = error as AxiosError<ApiError>;
+    const errorResponseMessage = axiosError?.response?.data.message ?? "";
 
     const userFirstName = user?.firstName ?? "";
 
@@ -41,6 +47,7 @@ export function useUserPage() {
         userInfoIsLoading,
         userImgIsLoading,
         isError,
+        errorResponseMessage,
         refetch,
         imgUrl,
         user

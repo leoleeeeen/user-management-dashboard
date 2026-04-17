@@ -41,7 +41,7 @@ export function UserCard({ user, isLoading }: UserCardProps) {
                         flexDirection={{ base: "column", sm: "row" }}
                         alignItems={{ base: "flex-start", sm: "center" }}
                         gap={{ base: 1, sm: 4 }}>
-                        <DataList.ItemLabel>{tList("age")}</DataList.ItemLabel>
+                        <DataList.ItemLabel color="black">{tList("age")}</DataList.ItemLabel>
 
                         {isLoading
                             ? <Skeleton height="24px" width="10%" />
@@ -53,7 +53,7 @@ export function UserCard({ user, isLoading }: UserCardProps) {
                         flexDirection={{ base: "column", sm: "row" }}
                         alignItems={{ base: "flex-start", sm: "center" }}
                         gap={{ base: 1, sm: 4 }}>
-                        <DataList.ItemLabel>{tList("email")}</DataList.ItemLabel>
+                        <DataList.ItemLabel color="black">{tList("email")}</DataList.ItemLabel>
                         {isLoading
                             ? <Skeleton height="24px" width="30%" />
                             : <DataList.ItemValue>{user?.email}</DataList.ItemValue>}

@@ -7,6 +7,10 @@ export type User = {
     phone: string;
 }
 
+export type ApiError = {
+    message: string;
+}
+
 export type GetUsersParams = {
     skip: number;
     limit: number;

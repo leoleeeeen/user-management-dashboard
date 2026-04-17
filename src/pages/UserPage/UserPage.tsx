@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import styles from "./UserPage.module.css"
 import { ArrowNarrowLeft } from "@/assets/icons/ArrowNarrowLeft";
 import { useTranslation } from "react-i18next"
-import { Box, Button, Skeleton, Text } from "@chakra-ui/react";
+import { Box, Button, DataList, Skeleton, Text } from "@chakra-ui/react";
 import { useUserPage } from "./hooks/useUserPage";
 import { ErrorStateComponent } from "@/components/ErrorStateComponent";
 
@@ -12,6 +12,7 @@ export function UserPage() {
         userInfoIsLoading,
         userImgIsLoading,
         isError,
+        errorResponseMessage,
         refetch,
         imgUrl,
         user
@@ -28,7 +29,7 @@ export function UserPage() {
             </Link>
 
             {isError
-                ? <ErrorStateComponent refetch={refetch} />
+                ? <ErrorStateComponent refetch={refetch} errorResponseMessage={errorResponseMessage} />
                 : <>
                     <Skeleton height="45px" loading={userInfoIsLoading} >
                         <Text
@@ -47,9 +48,13 @@ export function UserPage() {
                             gap="4"
                             flex="1"
                         >
-                            <Skeleton loading={userInfoIsLoading || userImgIsLoading} borderRadius="lg">
+                            <Skeleton
+                                loading={userInfoIsLoading || userImgIsLoading}
+                                alignSelf={{ base: "center", md: "auto" }}
+                                borderRadius="lg"
+                                width="150px"
+                                height="150px">
                                 <Box
-                                    alignSelf={{ base: "center", md: "auto" }}
                                     width="150px"
                                     height="150px"
                                     borderRadius="lg"
@@ -65,47 +70,57 @@ export function UserPage() {
                                     </Text>
                                 </Skeleton>
 
-                                <Box mt="4" display="flex" flexDirection="column" gap="2">
-                                    <Box display="flex" gap='2'>
-                                        <Text as="span" fontWeight="medium">
+                                <DataList.Root orientation="horizontal" size="lg" mt="2" gap="2">
+                                    <DataList.Item
+                                        minW="0"
+                                        key={t("age")}
+                                        flexDirection={{ base: "column", sm: "row" }}
+                                        alignItems={{ base: "flex-start", sm: "center" }}
+                                        gap={{ base: 1, sm: 4 }}>
+                                        <DataList.ItemLabel color="black" minW="60px" fontWeight="600">
                                             {t("age")}
-                                        </Text>
+                                        </DataList.ItemLabel>
 
-                                        <Skeleton
-                                            loading={userInfoIsLoading}
-                                            height="24px"
-                                            width="40px"
-                                        >
-                                            <Text as="span">{user?.age}</Text>
-                                        </Skeleton>
-                                    </Box>
-                                    <Box display="flex" gap='2'>
-                                        <Text as="span" fontWeight="medium">
+                                        {userInfoIsLoading
+                                            ? <Skeleton height="24px" width="40px" />
+                                            : <DataList.ItemValue>{user?.age}</DataList.ItemValue>}
+                                    </DataList.Item>
+
+                                    <DataList.Item
+                                        minW="0"
+                                        key={t("email")}
+                                        flexDirection={{ base: "column", sm: "row" }}
+                                        alignItems={{ base: "flex-start", sm: "center" }}
+                                        gap={{ base: 1, sm: 4 }}>
+                                        <DataList.ItemLabel color="black" minW="60px" fontWeight="600">
                                             {t("email")}
-                                        </Text>
+                                        </DataList.ItemLabel>
 
-                                        <Skeleton
-                                            loading={userInfoIsLoading}
-                                            height="24px"
-                                            width="50%"
-                                        >
-                                            <Text as="span">{user?.email}</Text>
-                                        </Skeleton>
-                                    </Box>
-                                    <Box display="flex" gap='2'>
-                                        <Text as="span" fontWeight="medium">
+                                        {userInfoIsLoading
+                                            ? <Skeleton
+                                                height="24px"
+                                                width={{ base: "100%", sm: "auto" }}
+                                                flex={{ base: "none", sm: "1" }} />
+                                            : <DataList.ItemValue>{user?.email}</DataList.ItemValue>}
+                                    </DataList.Item>
+
+                                    <DataList.Item
+                                        key={t("phone")}
+                                        flexDirection={{ base: "column", sm: "row" }}
+                                        alignItems={{ base: "flex-start", sm: "center" }}
+                                        gap={{ base: 1, sm: 4 }}>
+                                        <DataList.ItemLabel color="black" minW="60px" fontWeight="600">
                                             {t("phone")}
-                                        </Text>
+                                        </DataList.ItemLabel>
 
-                                        <Skeleton
-                                            loading={userInfoIsLoading}
-                                            height="24px"
-                                            width="50%"
-                                        >
-                                            <Text as="span">{user?.phone}</Text>
-                                        </Skeleton>
-                                    </Box>
-                                </Box>
+                                        {userInfoIsLoading
+                                            ? <Skeleton
+                                                height="24px"
+                                                width={{ base: "100%", sm: "auto" }}
+                                                flex={{ base: "none", sm: "1" }} />
+                                            : <DataList.ItemValue>{user?.phone}</DataList.ItemValue>}
+                                    </DataList.Item>
+                                </DataList.Root>
                             </Box>
                         </Box>
                         <Link
