@@ -24,7 +24,7 @@ export function SearchBar({
             <Group attached w="full" position="relative">
                 <Input
                     placeholder={t("search_placeholder")}
-                    className="input"
+                    className="search_input"
                     onChange={e => setSearchInput(e.target.value)}
                     value={searchInput}
                 />
