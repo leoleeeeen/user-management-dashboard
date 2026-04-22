@@ -2,14 +2,9 @@ import { useTranslation } from "react-i18next"
 import styles from "./UserForm.module.css"
 import { Button, Field, Fieldset, Input } from "@chakra-ui/react";
 import { useForm, type SubmitHandler } from "react-hook-form"
+import type { UserFormData } from "@/api/createUser/types";
+import { useCreateUser } from "@/api/createUser/useCreateUser";
 
-type UserFormData = {
-    firstName: string;
-    lastName: string;
-    age: string;
-    email: string;
-    phone: string;
-}
 
 export function UserForm() {
     const { t } = useTranslation("userForm");
@@ -24,8 +19,10 @@ export function UserForm() {
         mode: "onChange"
     });
 
+    const { mutate } = useCreateUser();
+
     const onSubmit: SubmitHandler<UserFormData> = (data) => {
-        console.log(data);
+        mutate(data);
     }
 
     return (

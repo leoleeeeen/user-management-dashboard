@@ -20,6 +20,7 @@ export const createGetUsersOptions = (params: GetUsersParams, isSearching: boole
         queryKey: createQueryKey(params),
         queryFn: () => getUsers(params),
         placeholderData: (prev) => prev,
+        staleTime: Infinity,
         enabled: !isSearching
     })
 }

@@ -21,7 +21,6 @@ export const createSearchUsersOptions = (params: GetSearchUsersParams, isSearchi
     return queryOptions({
         queryKey: createQueryKey(params),
         queryFn: () => getSearchUsers(params),
-        placeholderData: (prev) => prev,
         enabled: isSearching
     })
 }

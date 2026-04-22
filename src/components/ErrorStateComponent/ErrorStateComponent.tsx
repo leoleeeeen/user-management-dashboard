@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 
 type ErrorStateProps = {
     refetch: (options?: RefetchOptions) => Promise<QueryObserverResult<User | UsersData, Error>>;
-    errorResponseMessage: string;
+    errorResponseMessage?: string;
 }
 
 export function ErrorStateComponent({ refetch, errorResponseMessage }: ErrorStateProps) {
