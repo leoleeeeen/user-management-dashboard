@@ -4,5 +4,24 @@
     "email": "Email",
     "age": "Age",
     "phone": "Phone",
-    "save_button": "Save"
+    "save_button": "Save",
+    "validation": {
+        "required": "This field is required",
+        "name": {
+            "min_length": "At least 2 characters",
+            "max_length": "Maximum of 20 characters",
+            "only_letters": "Only letters"
+        },
+        "age": {
+            "min_age": "The age cannot be less than 0",
+            "max_age": "Too old",
+            "only_numbers": "Only numbers"
+        },
+        "email": {
+            "incorrect_email": "Incorrect email address"
+        },
+        "phone": {
+            "incorrect_phone": "Incorrect phone number"
+        }
+    }
 }

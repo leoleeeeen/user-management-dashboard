@@ -1,0 +1,13 @@
+{
+    "global": {
+        "error": {
+            "title": "Ошибка"
+        }
+    },
+    "userCreation": {
+        "success": {
+            "title": "Успех",
+            "description": "Пользователь успешно создан"
+        }
+    }
+}

@@ -20,7 +20,7 @@ const createUser = (formData: UserFormData) => {
         data: {
             firstName,
             lastName,
-            age,
+            age: Number(age),
             phone,
             email
         }
@@ -60,9 +60,6 @@ export const createCreateUserOptions = (queryClient: QueryClient) => {
                     users: [userWithLocalId, ...oldData.users],
                 });
             });
-        },
-        onError: () => {
-            console.log("Failed to add user");
         }
     })
 }

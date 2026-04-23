@@ -4,5 +4,24 @@
     "email": "Email",
     "age": "Возраст",
     "phone": "Телефон",
-    "save_button": "Сохранить"
+    "save_button": "Сохранить",
+    "validation": {
+        "required": "Это поле обязательно к заполнению",
+        "name": {
+            "min_length": "Минимум 2 буквы",
+            "max_length": "Максимум 20 букв",
+            "only_letters": "Только буквы"
+        },
+        "age": {
+            "min_age": "Возраст не может быть меньше 0",
+            "max_age": "Слишком большой возраст",
+            "only_numbers": "Только числа"
+        },
+        "email": {
+            "incorrect_email": "Некорректный email"
+        },
+        "phone": {
+            "incorrect_phone": "Некорректный номер телефона"
+        }
+    }
 }
