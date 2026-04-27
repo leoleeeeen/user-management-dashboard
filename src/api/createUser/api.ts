@@ -2,11 +2,12 @@ import { mutationOptions } from "@tanstack/react-query"
 import type { QueryClient } from "@tanstack/react-query"
 import type { User } from "../getUsers/types"
 import { httpClient } from "../httpClient"
-import type { UserFormData, UsersResponse } from "./types"
+import type { UserFormData } from "./types"
 
 const createUser = (formData: UserFormData) => {
 
-    const { firstName,
+    const {
+        firstName,
         lastName,
         age,
         phone,
@@ -36,30 +37,15 @@ export const createCreateUserOptions = (queryClient: QueryClient) => {
         mutationFn: (formData: UserFormData) => createUser(formData),
         mutationKey: createMutationKey(),
         onSuccess: (data) => {
-            const queries = queryClient.getQueriesData<UsersResponse>({
-                queryKey: ['users'],
-            });
+            const usersWithLocalId = {
+                ...data,
+                id: Date.now()
+            }
 
-            queries.forEach(([queryKey, oldData]) => {
-                if (!oldData) return;
-
-                const [, params] = queryKey as [
-                    string,
-                    { skip?: number; limit?: number }
-                ];
-
-                if (params?.skip !== 0) return;
-
-                const userWithLocalId = {
-                    ...data,
-                    id: Date.now()
-                }
-
-                queryClient.setQueryData(queryKey, {
-                    ...oldData,
-                    users: [userWithLocalId, ...oldData.users],
-                });
-            });
+            queryClient.setQueryData(['localUsers'], (old: User[] = []) =>
+                [usersWithLocalId,
+                    ...old
+                ])
         }
     })
 }

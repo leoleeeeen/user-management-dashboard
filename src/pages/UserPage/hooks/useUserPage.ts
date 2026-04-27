@@ -6,7 +6,7 @@ import { useMemo, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 export function useUserPage() {
-    const userId = useParams().userId;
+    const userId = Number(useParams().userId);
 
     if (!userId) {
         throw new Error('userId is required');

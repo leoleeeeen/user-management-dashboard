@@ -1,6 +1,8 @@
 import { useGetSearchUsers } from "@/api/getSearchUsers/useGetSearchUsers";
+import type { User } from "@/api/getUsers/types";
 import { useGetUsers } from "@/api/getUsers/useGetUsers";
 import { ROW_LIMIT } from "@/components/Pagination/LimitListCollection";
+import { useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
@@ -15,6 +17,7 @@ export type UpdateParams = Partial<QueryParams>;
 export function useUserListPage() {
     const [searchInput, setSearchInput] = useState('');
     const [searchParams, setSearchParams] = useSearchParams();
+    const queryClient = useQueryClient();
 
     const page = Number(searchParams.get("page")) || 1;
     const pageSize = Number(searchParams.get("pageSize")) || ROW_LIMIT[0];
@@ -43,15 +46,19 @@ export function useUserListPage() {
 
     const usersQuery = useGetUsers({ skip, limit: pageSize }, isSearching);
     const searchUsersQuery = useGetSearchUsers({ search, skip, limit: pageSize }, isSearching);
+    const localUsers: User[] = queryClient.getQueryData(['localUsers']) || [];
+
+
+    const users = isSearching
+        ? searchUsersQuery.data?.users ?? []
+        : skip === 0
+            ? [...localUsers, ...(usersQuery.data?.users ?? [])]
+            : usersQuery.data?.users ?? []
 
     const currentQuery = isSearching ? searchUsersQuery : usersQuery;
-
     const isLoading = currentQuery.isLoading;
-
-    const users = currentQuery.data?.users ?? [];
     const total = currentQuery.data?.total ?? 0;
     const pages = Math.ceil(total / pageSize);
-
 
     const showPagination = !(users.length === 0);
 
