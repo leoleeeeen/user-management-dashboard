@@ -1,44 +1,16 @@
 import { useTranslation } from "react-i18next"
 import styles from "./UserForm.module.css"
 import { Button, Field, Fieldset, Input, Spinner } from "@chakra-ui/react";
-import { useForm, type SubmitHandler } from "react-hook-form"
-import type { UserFormData } from "@/api/createUser/types";
-import { useCreateUser } from "@/api/createUser/useCreateUser";
-import { TOASTS } from "../UI/Toaster/toastMessages";
-import { handleLocalSuccessToast } from "@/utils/handleLocalSuccessToast";
+import type { UserFormProps } from "./types";
+import { useUserForm } from "./hooks/useUserForm";
 
-
-export function UserForm() {
+export function UserForm({ mutate, isPending, toastMessage }: UserFormProps) {
     const { t } = useTranslation("userForm");
-    const { t: tToast } = useTranslation("toasts");
-
     const {
         register,
         handleSubmit,
-        reset,
-        formState: {
-            errors,
-        }
-    } = useForm<UserFormData>({
-        mode: "onChange"
-    });
-
-    const {
-        mutate,
-        isPending
-    } = useCreateUser();
-
-    const onSubmit: SubmitHandler<UserFormData> = (data) => {
-        mutate(data, {
-            onSuccess: () => {
-                reset();
-                handleLocalSuccessToast(
-                    TOASTS.USER_CREATED.id,
-                    tToast(TOASTS.USER_CREATED.title),
-                    tToast(TOASTS.USER_CREATED.description));
-            }
-        });
-    }
+        errors,
+        onSubmit } = useUserForm(mutate, toastMessage);
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>

@@ -7,9 +7,9 @@ import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 type QueryParams = {
-    page?: number;
-    pageSize?: number;
-    search?: string;
+    page: number;
+    pageSize: number;
+    search: string;
 };
 
 export type UpdateParams = Partial<QueryParams>;
