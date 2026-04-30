@@ -10,11 +10,9 @@ export function UserPage() {
     const { t } = useTranslation("userPage");
     const {
         userInfoIsLoading,
-        userImgIsLoading,
         isError,
         errorResponseMessage,
         refetch,
-        imgUrl,
         user
     } = useUserPage();
 
@@ -49,7 +47,7 @@ export function UserPage() {
                             flex="1"
                         >
                             <Skeleton
-                                loading={userInfoIsLoading || userImgIsLoading}
+                                loading={userInfoIsLoading}
                                 alignSelf={{ base: "center", md: "auto" }}
                                 borderRadius="lg"
                                 width="150px"
@@ -58,8 +56,10 @@ export function UserPage() {
                                     width="150px"
                                     height="150px"
                                     borderRadius="lg"
-                                    bgColor="gray.300"
-                                    bgImage={`url(${imgUrl})`}>
+                                    borderStyle="solid"
+                                    borderWidth="1px"
+                                    borderColor="gray.200"
+                                    bgImage={`url(${user?.image})`}>
                                 </Box>
                             </Skeleton>
 
@@ -77,7 +77,7 @@ export function UserPage() {
                                         flexDirection={{ base: "column", sm: "row" }}
                                         alignItems={{ base: "flex-start", sm: "center" }}
                                         gap={{ base: 1, sm: 4 }}>
-                                        <DataList.ItemLabel color="black" minW="60px" fontWeight="600">
+                                        <DataList.ItemLabel color="black" minW="70px" fontWeight="600">
                                             {t("age")}
                                         </DataList.ItemLabel>
 
@@ -92,7 +92,7 @@ export function UserPage() {
                                         flexDirection={{ base: "column", sm: "row" }}
                                         alignItems={{ base: "flex-start", sm: "center" }}
                                         gap={{ base: 1, sm: 4 }}>
-                                        <DataList.ItemLabel color="black" minW="60px" fontWeight="600">
+                                        <DataList.ItemLabel color="black" minW="70px" fontWeight="600">
                                             {t("email")}
                                         </DataList.ItemLabel>
 
@@ -109,7 +109,7 @@ export function UserPage() {
                                         flexDirection={{ base: "column", sm: "row" }}
                                         alignItems={{ base: "flex-start", sm: "center" }}
                                         gap={{ base: 1, sm: 4 }}>
-                                        <DataList.ItemLabel color="black" minW="60px" fontWeight="600">
+                                        <DataList.ItemLabel color="black" minW="70px" fontWeight="600">
                                             {t("phone")}
                                         </DataList.ItemLabel>
 

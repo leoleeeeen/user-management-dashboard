@@ -1,29 +1,20 @@
 import { mutationOptions } from "@tanstack/react-query"
-import type { QueryClient } from "@tanstack/react-query"
 import type { User } from "../getUsers/types"
 import { httpClient } from "../httpClient"
 import type { UserFormData } from "./types"
 
 const createUser = (formData: UserFormData) => {
 
-    const {
-        firstName,
-        lastName,
-        age,
-        phone,
-        email
-    } = formData;
-
     return httpClient<User>({
         url: "/users/add",
         method: "POST",
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+            'X-API-KEY': import.meta.env.VITE_API_KEY,
+            'Content-Type': 'application/json'
+        },
         data: {
-            firstName,
-            lastName,
-            age: Number(age),
-            phone,
-            email
+            ...formData,
+            age: Number(formData.age)
         }
     })
 }
@@ -32,20 +23,9 @@ const createMutationKey = () => {
     return ["createUser"];
 }
 
-export const createCreateUserOptions = (queryClient: QueryClient) => {
+export const createCreateUserOptions = () => {
     return mutationOptions({
         mutationFn: (formData: UserFormData) => createUser(formData),
         mutationKey: createMutationKey(),
-        onSuccess: (data) => {
-            const usersWithLocalId = {
-                ...data,
-                id: Date.now()
-            }
-
-            queryClient.setQueryData(['localUsers'], (old: User[] = []) =>
-                [usersWithLocalId,
-                    ...old
-                ])
-        }
     })
 }

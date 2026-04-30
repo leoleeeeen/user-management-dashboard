@@ -6,8 +6,17 @@ const getUsers = ({ skip, limit }: GetUsersParams) => {
 
     return httpClient<UsersData>({
         url: "/users",
+        headers: {
+            'X-API-KEY': import.meta.env.VITE_API_KEY,
+            'Content-Type': 'application/json',
+        },
         method: "GET",
-        params: { skip, limit }
+        params: {
+            skip,
+            limit,
+            sortBy: "id",
+            order: "desc"
+        }
     })
 }
 

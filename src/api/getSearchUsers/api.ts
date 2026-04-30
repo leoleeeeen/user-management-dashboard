@@ -9,7 +9,15 @@ const getSearchUsers = ({ search, skip, limit }: GetSearchUsersParams) => {
     return httpClient<UsersData>({
         url: "/users/search",
         method: "GET",
-        params: { q: search, skip, limit }
+        headers: {
+            'X-API-KEY': import.meta.env.VITE_API_KEY,
+            'Content-Type': 'application/json'
+        },
+        params: {
+            q: search,
+            skip,
+            limit
+        }
     })
 }
 

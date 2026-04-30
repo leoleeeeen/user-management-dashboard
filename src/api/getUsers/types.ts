@@ -5,6 +5,7 @@ export type User = {
     age: number;
     email: string;
     phone: string;
+    image: string;
 }
 
 export type ApiError = {
