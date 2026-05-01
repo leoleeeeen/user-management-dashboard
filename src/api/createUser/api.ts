@@ -1,9 +1,9 @@
-import { mutationOptions } from "@tanstack/react-query"
+import { mutationOptions, QueryClient } from "@tanstack/react-query"
 import type { User } from "../getUsers/types"
 import { httpClient } from "../httpClient"
-import type { UserFormData } from "./types"
+import type { CreateUserPayload } from "./types"
 
-const createUser = (formData: UserFormData) => {
+const createUser = (formData: CreateUserPayload) => {
 
     return httpClient<User>({
         url: "/users/add",
@@ -23,9 +23,12 @@ const createMutationKey = () => {
     return ["createUser"];
 }
 
-export const createCreateUserOptions = () => {
+export const createCreateUserOptions = (queryClient: QueryClient) => {
     return mutationOptions({
-        mutationFn: (formData: UserFormData) => createUser(formData),
+        mutationFn: (formData: CreateUserPayload) => createUser(formData),
         mutationKey: createMutationKey(),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["users"] });
+        }
     })
 }

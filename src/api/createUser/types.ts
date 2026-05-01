@@ -8,6 +8,14 @@ export type UserFormData = {
     phone: string;
 }
 
+export type CreateUserPayload = {
+    firstName: string;
+    lastName: string;
+    age: number;
+    email: string;
+    phone: string;
+}
+
 export type UsersResponse = {
     users: User[]
     total: number

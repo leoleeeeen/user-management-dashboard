@@ -1,6 +1,7 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createCreateUserOptions } from "./api";
 
 export const useCreateUser = () => {
-    return useMutation({ ...createCreateUserOptions() })
+    const queryClient = useQueryClient();
+    return useMutation({ ...createCreateUserOptions(queryClient) })
 }

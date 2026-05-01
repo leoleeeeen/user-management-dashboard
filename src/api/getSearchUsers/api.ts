@@ -16,7 +16,9 @@ const getSearchUsers = ({ search, skip, limit }: GetSearchUsersParams) => {
         params: {
             q: search,
             skip,
-            limit
+            limit,
+            sortBy: "id",
+            order: "desc"
         }
     })
 }

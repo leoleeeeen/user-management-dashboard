@@ -29,6 +29,7 @@ export function UserCreationPage() {
             </Text>
 
             <UserForm
+                mode="create"
                 mutate={mutate}
                 isPending={isPending}
                 toastMessage={TOASTS.USER_CREATED} />
