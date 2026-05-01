@@ -1,6 +1,6 @@
 import type { UserFormData } from "@/api/createUser/types"
 
-const normalizeUserData = (data: UserFormData) => {
+export const normalizeUserData = (data: UserFormData) => {
     return {
         ...data,
         age: Number(data.age)

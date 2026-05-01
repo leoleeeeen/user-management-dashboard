@@ -14,7 +14,6 @@ const createUser = (formData: CreateUserPayload) => {
         },
         data: {
             ...formData,
-            age: Number(formData.age)
         }
     })
 }

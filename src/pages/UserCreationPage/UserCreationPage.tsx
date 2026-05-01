@@ -3,16 +3,13 @@ import { UserForm } from "@/components/UserForm";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom"
 import { Button, Text } from "@chakra-ui/react";
-import { useCreateUser } from "@/api/createUser/useCreateUser";
-import { TOASTS } from "@/components/UI/Toaster/toastMessages";
+import { useUserCreationPage } from "./hooks/useUserCreationPage";
+
 
 export function UserCreationPage() {
     const { t } = useTranslation("userCreationPage");
 
-    const {
-        mutate,
-        isPending
-    } = useCreateUser();
+    const { isPending, onSubmit, form } = useUserCreationPage();
 
     return (
         <>
@@ -29,10 +26,10 @@ export function UserCreationPage() {
             </Text>
 
             <UserForm
-                mode="create"
-                mutate={mutate}
+                form={form}
+                onSubmit={onSubmit}
                 isPending={isPending}
-                toastMessage={TOASTS.USER_CREATED} />
+            />
         </ >
     )
 }

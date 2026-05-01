@@ -2,15 +2,11 @@ import { useTranslation } from "react-i18next"
 import styles from "./UserForm.module.css"
 import { Button, Field, Fieldset, Input, Spinner } from "@chakra-ui/react";
 import type { UserFormProps } from "./types";
-import { useUserForm } from "./hooks/useUserForm";
 
-export function UserForm({ mutate, isPending, toastMessage }: UserFormProps) {
+export function UserForm({ isPending, form, onSubmit }: UserFormProps) {
     const { t } = useTranslation("userForm");
-    const {
-        register,
-        handleSubmit,
-        errors,
-        onSubmit } = useUserForm(mutate, toastMessage);
+
+    const { register, handleSubmit, formState: { errors } } = form;
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>

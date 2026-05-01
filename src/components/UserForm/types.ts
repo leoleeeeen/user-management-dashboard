@@ -1,11 +1,12 @@
 import type { UserFormData } from "@/api/createUser/types";
 import type { User } from "@/api/getUsers/types";
 import type { UseMutateFunction } from "@tanstack/react-query";
+import type { SubmitHandler, UseFormReturn } from "react-hook-form";
 
 export type UserFormProps = {
-    mutate: MutateFunction;
     isPending: boolean;
-    toastMessage: ToastMessage;
+    form: UseFormReturn<UserFormData>;
+    onSubmit: SubmitHandler<UserFormData>;
 }
 
 export type ToastMessage = {
