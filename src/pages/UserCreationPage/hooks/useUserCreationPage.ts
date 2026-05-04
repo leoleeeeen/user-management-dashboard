@@ -5,6 +5,7 @@ import { handleLocalSuccessToast } from "@/utils/handleLocalSuccessToast";
 import { TOASTS } from "@/components/UI/Toaster/toastMessages";
 import { useTranslation } from "react-i18next";
 import type { UserFormData } from "@/api/createUser/types";
+import { addUserImgLink } from "@/utils/addUserImgLink";
 
 export function useUserCreationPage() {
     const { t: tToast } = useTranslation("toasts");
@@ -19,7 +20,9 @@ export function useUserCreationPage() {
     });
 
     const onSubmit: SubmitHandler<UserFormData> = (data) => {
-        const normalized = normalizeUserData(data);
+        const withImg = addUserImgLink(data);
+        const normalized = normalizeUserData(withImg);
+
         mutate(normalized, {
             onSuccess: () => {
                 form.reset();

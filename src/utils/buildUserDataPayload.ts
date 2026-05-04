@@ -1,6 +1,6 @@
-import type { UserFormData } from "@/api/createUser/types"
+import type { UserFormDataWithImg } from "@/api/createUser/types"
 
-export const normalizeUserData = (data: UserFormData) => {
+export const normalizeUserData = (data: UserFormDataWithImg) => {
     return {
         ...data,
         age: Number(data.age)
@@ -17,8 +17,8 @@ const pickDirtyFields = <T>(
 };
 
 export const buildUserPayload = (params: {
-    data: UserFormData;
-    dirtyFields?: Partial<Record<keyof UserFormData, boolean>>;
+    data: UserFormDataWithImg;
+    dirtyFields?: Partial<Record<keyof UserFormDataWithImg, boolean>>;
 }) => {
     const normalized = normalizeUserData(params.data);
 

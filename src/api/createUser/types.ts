@@ -8,12 +8,17 @@ export type UserFormData = {
     phone: string;
 }
 
+export interface UserFormDataWithImg extends UserFormData {
+    image: string;
+}
+
 export type CreateUserPayload = {
     firstName: string;
     lastName: string;
     age: number;
     email: string;
     phone: string;
+    image: string;
 }
 
 export type UsersResponse = {
