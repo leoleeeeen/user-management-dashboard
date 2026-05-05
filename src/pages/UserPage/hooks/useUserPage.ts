@@ -6,10 +6,6 @@ import { useParams } from "react-router-dom";
 export function useUserPage() {
     const userId = Number(useParams().userId);
 
-    if (!userId) {
-        throw new Error('userId is required');
-    }
-
     const {
         data: user,
         isLoading: userInfoIsLoading,
@@ -19,7 +15,7 @@ export function useUserPage() {
     } = useGetUser(userId);
 
     const axiosError = error as AxiosError<ApiError>;
-    const errorResponseMessage = axiosError?.response?.data.message ?? "";
+    const errorResponseMessage = axiosError?.response?.data.detail ?? "";
 
     return {
         userInfoIsLoading,

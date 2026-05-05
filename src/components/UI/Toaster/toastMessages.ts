@@ -6,5 +6,10 @@ export const TOASTS = {
         id: "user-created",
         title: "userCreation.success.title",
         description: "userCreation.success.description"
+    },
+    USER_EDITED: {
+        id: "user-edited",
+        title: "userEdition.success.title",
+        description: "userEdition.success.description"
     }
 }

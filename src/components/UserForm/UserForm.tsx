@@ -1,7 +1,13 @@
 import { useTranslation } from "react-i18next"
-import styles from "./UserForm.module.css"
 import { Button, Field, Fieldset, Input, Spinner } from "@chakra-ui/react";
-import type { UserFormProps } from "./types";
+import type { SubmitHandler, UseFormReturn } from "react-hook-form";
+import type { UserFormData } from "@/api/createUser/types";
+
+export type UserFormProps = {
+    isPending: boolean;
+    form: UseFormReturn<UserFormData>;
+    onSubmit: SubmitHandler<UserFormData>;
+}
 
 export function UserForm({ isPending, form, onSubmit }: UserFormProps) {
     const { t } = useTranslation("userForm");
@@ -10,10 +16,15 @@ export function UserForm({ isPending, form, onSubmit }: UserFormProps) {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <Fieldset.Root className={styles.form}>
+            <Fieldset.Root
+                my="10px"
+                mx="auto"
+                maxW="600px"
+                display="flex"
+                flexDirection="column">
                 <Fieldset.Content display="flex" gap="3" flexDirection="column">
                     <Field.Root invalid={!!errors.firstName}>
-                        <Field.Label className={styles.label}>
+                        <Field.Label fontSize="16px" fontWeight="600">
                             {t("first_name")}
                         </Field.Label>
 
@@ -40,7 +51,7 @@ export function UserForm({ isPending, form, onSubmit }: UserFormProps) {
                     </Field.Root>
 
                     <Field.Root invalid={!!errors.lastName}>
-                        <Field.Label className={styles.label}>
+                        <Field.Label fontSize="16px" fontWeight="600">
                             {t("last_name")}
                         </Field.Label>
 
@@ -67,7 +78,7 @@ export function UserForm({ isPending, form, onSubmit }: UserFormProps) {
                     </Field.Root>
 
                     <Field.Root invalid={!!errors.age}>
-                        <Field.Label className={styles.label}>
+                        <Field.Label fontSize="16px" fontWeight="600">
                             {t("age")}
                         </Field.Label>
 
@@ -94,7 +105,7 @@ export function UserForm({ isPending, form, onSubmit }: UserFormProps) {
                     </Field.Root>
 
                     <Field.Root invalid={!!errors.email}>
-                        <Field.Label className={styles.label}>
+                        <Field.Label fontSize="16px" fontWeight="600">
                             {t("email")}
                         </Field.Label>
 
@@ -113,7 +124,7 @@ export function UserForm({ isPending, form, onSubmit }: UserFormProps) {
                     </Field.Root>
 
                     <Field.Root invalid={!!errors.phone}>
-                        <Field.Label className={styles.label}>
+                        <Field.Label fontSize="16px" fontWeight="600">
                             {t("phone")}
                         </Field.Label>
 

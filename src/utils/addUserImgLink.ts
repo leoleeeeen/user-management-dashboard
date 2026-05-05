@@ -1,6 +1,6 @@
-import type { UserFormData } from "@/api/createUser/types";
+import type { NormalizedUserData } from "@/api/createUser/types";
 
-export function addUserImgLink(data: UserFormData) {
+export function addUserImgLink(data: NormalizedUserData) {
     return {
         ...data,
         image: `${import.meta.env.VITE_IMG_API_URL}/${data.firstName}/150`

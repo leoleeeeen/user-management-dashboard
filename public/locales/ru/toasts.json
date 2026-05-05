@@ -9,5 +9,11 @@
             "title": "Успех",
             "description": "Пользователь успешно создан"
         }
+    },
+    "userEdition": {
+        "success": {
+            "title": "Успех",
+            "description": "Изменения сохранены"
+        }
     }
 }

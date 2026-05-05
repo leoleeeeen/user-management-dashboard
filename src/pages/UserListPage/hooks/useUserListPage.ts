@@ -52,7 +52,7 @@ export function useUserListPage() {
     const total = currentQuery.data?.total ?? 0;
     const pages = Math.ceil(total / pageSize);
 
-    const showPagination = !(users.length === 0);
+    const showPagination = pages > 1;
 
     const handleSearchSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
         e.preventDefault();

@@ -9,7 +9,7 @@ export type User = {
 }
 
 export type ApiError = {
-    message: string;
+    detail: string;
 }
 
 export type GetUsersParams = {

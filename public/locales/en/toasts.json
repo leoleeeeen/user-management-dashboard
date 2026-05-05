@@ -9,5 +9,11 @@
             "title": "Success",
             "description": "The user was successfully created"
         }
+    },
+    "userEdition": {
+        "success": {
+            "title": "Success",
+            "description": "The user was successfully edited"
+        }
     }
 }

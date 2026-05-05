@@ -10,7 +10,7 @@ export function UserRow({ user, isFetching }: { user: User, isFetching: boolean 
             <Table.Cell>{user.firstName}</Table.Cell>
             <Table.Cell>{user.age}</Table.Cell>
             <Table.Cell>{user.email}</Table.Cell>
-            <Table.Cell >
+            <Table.Cell>
                 <Box display="flex" gap="2" justifyContent="end">
                     <Link to={`userPage/${user.id}`}>
                         <Button

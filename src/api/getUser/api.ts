@@ -18,7 +18,6 @@ const createQueryKey = (userId: number) => {
 }
 
 export const createGetUserOptions = (userId: number) => {
-
     return queryOptions({
         queryKey: createQueryKey(userId),
         queryFn: () => getUser(userId),

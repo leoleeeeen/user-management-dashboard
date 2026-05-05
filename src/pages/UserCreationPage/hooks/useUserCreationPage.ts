@@ -1,5 +1,5 @@
 import { useForm, type SubmitHandler } from "react-hook-form";
-import { normalizeUserData } from "@/utils/buildUserDataPayload";
+import { normalizeUserDataToApi } from "@/utils/normalizeData";
 import { useCreateUser } from "@/api/createUser/useCreateUser";
 import { handleLocalSuccessToast } from "@/utils/handleLocalSuccessToast";
 import { TOASTS } from "@/components/UI/Toaster/toastMessages";
@@ -20,10 +20,10 @@ export function useUserCreationPage() {
     });
 
     const onSubmit: SubmitHandler<UserFormData> = (data) => {
-        const withImg = addUserImgLink(data);
-        const normalized = normalizeUserData(withImg);
+        const normalized = normalizeUserDataToApi(data);
+        const withImg = addUserImgLink(normalized);
 
-        mutate(normalized, {
+        mutate(withImg, {
             onSuccess: () => {
                 form.reset();
                 handleLocalSuccessToast(

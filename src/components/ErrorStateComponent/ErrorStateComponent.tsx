@@ -3,8 +3,6 @@ import { Center, Button, EmptyState, VStack } from "@chakra-ui/react";
 import type { QueryObserverResult, RefetchOptions } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 
-
-
 type ErrorStateProps = {
     refetch: (options?: RefetchOptions) => Promise<QueryObserverResult<User | UsersData, Error>>;
     errorResponseMessage?: string;

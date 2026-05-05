@@ -6,7 +6,7 @@ import { useUserListPage } from "./hooks/useUserListPage";
 import { PaginationComponent } from "@/components/Pagination";
 import { ErrorStateComponent } from "@/components/ErrorStateComponent";
 import { SearchBar } from "@/components/SearchBar";
-import { EmptyStateComponent } from "@/components/EmptyStateComponent/EmptyStateComponent";
+import { EmptyStateComponent } from "@/components/EmptyStateComponent";
 
 export function UserListPage() {
     const { t } = useTranslation("userListPage");
