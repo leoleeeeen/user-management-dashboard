@@ -8,7 +8,9 @@
     gap: 20px;
 }
 
-.edit_button {
+.buttons {
+    display: flex;
+    gap: 8px;
     align-self: end;
 }
 
@@ -17,7 +19,7 @@
         flex-direction: column;
     }
 
-    .edit_button {
+    .buttons {
         align-self: auto;
     }
 }

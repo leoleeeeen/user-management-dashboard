@@ -23,6 +23,15 @@ export const buttonRecipe = defineRecipe({
                     bg: "secondary.600",
                 },
             },
+            delete: {
+                bg: "red.500",
+                color: "white",
+                border: "none",
+                px: "10px",
+                _hover: {
+                    bg: "red.600",
+                },
+            },
             icon: {
                 bg: "none",
                 p: "0"

@@ -1,7 +1,7 @@
 import type { UserListProps } from "./UserList";
 import { UserCard } from "../UserCard";
 
-export function UserListMobile({ isLoading, users, pageSize }: UserListProps) {
+export function UserListMobile({ isLoading, isFetching, users, pageSize }: UserListProps) {
     return (
         <>
             {isLoading
@@ -16,7 +16,8 @@ export function UserListMobile({ isLoading, users, pageSize }: UserListProps) {
                     return <UserCard
                         key={user.id}
                         user={user}
-                        isLoading={isLoading} />
+                        isLoading={isLoading}
+                        isFetching={isFetching} />
                 })
             }
         </>

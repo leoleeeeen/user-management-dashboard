@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next"
 import { Box, Button, DataList, Skeleton, Text } from "@chakra-ui/react";
 import { useUserPage } from "./hooks/useUserPage";
 import { ErrorStateComponent } from "@/components/ErrorStateComponent";
+import { DeleteUser } from "@/assets/icons/DeleteUser";
 
 export function UserPage() {
     const { t } = useTranslation("userPage");
@@ -123,18 +124,26 @@ export function UserPage() {
                                 </DataList.Root>
                             </Box>
                         </Box>
-                        <Link
-                            to={`/editUser/${user?.id}`}
-                            state={{ fromUserPage: true }}
-                            className={`${styles.edit_button} link_wide_button`}>
+                        <Box className={`${styles.buttons}`}>
+                            <Link
+                                to={`/editUser/${user?.id}`}
+                                state={{ fromUserPage: true }}
+                                className={`link_wide_button`}>
+                                <Button
+                                    variant="primary"
+                                    width="100%"
+                                    disabled={userInfoIsLoading ? true : false}
+                                    _disabled={{ opacity: 1 }}>
+                                    {t("edit_button")}
+                                </Button>
+                            </Link>
                             <Button
-                                variant="primary"
-                                width="100%"
-                                disabled={userInfoIsLoading ? true : false}
-                                _disabled={{ opacity: 1 }}>
-                                {t("edit_button")}
+                                variant="delete"
+                                px="10px"
+                            >
+                                <DeleteUser />
                             </Button>
-                        </Link>
+                        </Box>
                     </div>
                 </>}
         </ >

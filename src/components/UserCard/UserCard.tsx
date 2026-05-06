@@ -3,13 +3,15 @@ import { useTranslation } from "react-i18next";
 import type { User } from "@/api/getUsers/types";
 import { Edit } from "@/assets/icons/Edit";
 import { Link } from "react-router-dom";
+import { DeleteUser } from "@/assets/icons/DeleteUser";
 
 type UserCardProps = {
     user?: User;
     isLoading: boolean;
+    isFetching: boolean;
 }
 
-export function UserCard({ user, isLoading }: UserCardProps) {
+export function UserCard({ user, isLoading, isFetching }: UserCardProps) {
     const { t: tList } = useTranslation("userList");
     const { t: tCard } = useTranslation("userRow")
 
@@ -25,13 +27,28 @@ export function UserCard({ user, isLoading }: UserCardProps) {
                 {isLoading
                     ? <Skeleton height="24px" width="50%" />
                     : <Heading size="md" display="inline">{user?.firstName} {user?.lastName}</Heading>}
-                <Link
-                    to={`editUser/${user?.id}`}
-                    state={{ fromUserPage: false }}>
-                    <Button variant="secondary" px="10px">
-                        <Edit />
+                <Box
+                    display="flex"
+                    gap="2">
+                    <Link
+                        to={`editUser/${user?.id}`}
+                        state={{ fromUserPage: false }}>
+                        <Button
+                            disabled={isFetching ? true : false}
+                            _disabled={{ opacity: 1 }}
+                            variant="secondary"
+                            px="10px">
+                            <Edit />
+                        </Button>
+                    </Link>
+                    <Button
+                        variant="delete"
+                        px="10px"
+                        disabled={isFetching ? true : false}
+                        _disabled={{ opacity: 1 }}>
+                        <DeleteUser />
                     </Button>
-                </Link>
+                </Box>
             </Card.Header>
 
             <Card.Body color="fg.muted" p="4">
@@ -62,7 +79,11 @@ export function UserCard({ user, isLoading }: UserCardProps) {
 
                 <Box display="flex" gap="2" justifyContent="center" mt="6">
                     <Link to={`userPage/${user?.id}`} className="link_wide_button">
-                        <Button variant="primary" width="100%">
+                        <Button
+                            disabled={isFetching ? true : false}
+                            _disabled={{ opacity: 1 }}
+                            variant="primary"
+                            width="100%">
                             {tCard("view_button")}
                         </Button>
                     </Link>
