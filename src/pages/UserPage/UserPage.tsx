@@ -6,6 +6,8 @@ import { Box, Button, DataList, Skeleton, Text } from "@chakra-ui/react";
 import { useUserPage } from "./hooks/useUserPage";
 import { ErrorStateComponent } from "@/components/ErrorStateComponent";
 import { DeleteUser } from "@/assets/icons/DeleteUser";
+import { useConfirmDeletion } from "@/hooks/useConfirmDeletion";
+import { DeletionDialog } from "@/components/UI/DeletionDialog";
 
 export function UserPage() {
     const { t } = useTranslation("userPage");
@@ -17,8 +19,15 @@ export function UserPage() {
         user
     } = useUserPage();
 
+    const { handleDeleteUser,
+        handleConfirmDelete,
+        handleCloseModal,
+        isConfirmOpen
+    } = useConfirmDeletion();
+
     return (
         <>
+            <DeletionDialog confirm={handleConfirmDelete} cancel={handleCloseModal} isOpen={isConfirmOpen} />
             <Link to={"/"}>
                 <Button
                     variant="secondary">
@@ -138,6 +147,11 @@ export function UserPage() {
                                 </Button>
                             </Link>
                             <Button
+                                onClick={user
+                                    ? () => handleDeleteUser(user.id)
+                                    : () => { }}
+                                disabled={userInfoIsLoading ? true : false}
+                                _disabled={{ opacity: 1 }}
                                 variant="delete"
                                 px="10px"
                             >

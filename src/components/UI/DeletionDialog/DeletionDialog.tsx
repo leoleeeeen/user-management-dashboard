@@ -16,11 +16,12 @@ export function DeletionDialog({ confirm, cancel, isOpen }: DeletionDialogProps)
             onOpenChange={cancel}
             placement="center"
             motionPreset="slide-in-bottom"
+            size={{ base: "sm", md: "md" }}
         >
             <Portal>
                 <Dialog.Backdrop />
 
-                <Dialog.Positioner>
+                <Dialog.Positioner px="2">
                     <Dialog.Content>
                         <Dialog.Header>
                             <Dialog.Title>{t("confirm_title")}</Dialog.Title>
