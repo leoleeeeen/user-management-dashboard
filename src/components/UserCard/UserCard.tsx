@@ -8,10 +8,11 @@ import { DeleteUser } from "@/assets/icons/DeleteUser";
 type UserCardProps = {
     user?: User;
     isLoading: boolean;
-    isFetching: boolean;
+    isFetching?: boolean;
+    handleDeleteUser: (userId: number) => void;
 }
 
-export function UserCard({ user, isLoading, isFetching }: UserCardProps) {
+export function UserCard({ user, isLoading, isFetching, handleDeleteUser }: UserCardProps) {
     const { t: tList } = useTranslation("userList");
     const { t: tCard } = useTranslation("userRow")
 
@@ -34,17 +35,21 @@ export function UserCard({ user, isLoading, isFetching }: UserCardProps) {
                         to={`editUser/${user?.id}`}
                         state={{ fromUserPage: false }}>
                         <Button
-                            disabled={isFetching ? true : false}
+                            disabled={isFetching || isLoading ? true : false}
                             _disabled={{ opacity: 1 }}
                             variant="secondary"
                             px="10px">
                             <Edit />
                         </Button>
                     </Link>
+
                     <Button
+                        onClick={user
+                            ? () => handleDeleteUser(user.id)
+                            : () => { }}
                         variant="delete"
                         px="10px"
-                        disabled={isFetching ? true : false}
+                        disabled={isFetching || isLoading ? true : false}
                         _disabled={{ opacity: 1 }}>
                         <DeleteUser />
                     </Button>

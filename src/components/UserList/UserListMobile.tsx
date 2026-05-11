@@ -1,14 +1,15 @@
 import type { UserListProps } from "./UserList";
 import { UserCard } from "../UserCard";
 
-export function UserListMobile({ isLoading, isFetching, users, pageSize }: UserListProps) {
+export function UserListMobile({ isLoading, isFetching, users, pageSize, handleDeleteUser }: UserListProps) {
     return (
         <>
             {isLoading
                 ? Array.from({ length: pageSize }).map((_, i) =>
                     <UserCard
                         key={i}
-                        isLoading={isLoading} />)
+                        isLoading={isLoading}
+                        handleDeleteUser={handleDeleteUser} />)
                 : users.map((user) => {
                     if (!user) {
                         return;
@@ -17,7 +18,9 @@ export function UserListMobile({ isLoading, isFetching, users, pageSize }: UserL
                         key={user.id}
                         user={user}
                         isLoading={isLoading}
-                        isFetching={isFetching} />
+                        isFetching={isFetching}
+                        handleDeleteUser={handleDeleteUser}
+                    />
                 })
             }
         </>
