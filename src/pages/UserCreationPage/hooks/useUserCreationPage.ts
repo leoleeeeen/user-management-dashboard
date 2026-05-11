@@ -8,7 +8,7 @@ import type { UserFormData } from "@/api/createUser/types";
 import { addUserImgLink } from "@/utils/addUserImgLink";
 
 export function useUserCreationPage() {
-    const { t: tToast } = useTranslation("toasts");
+    const { t } = useTranslation("toasts");
 
     const {
         mutate,
@@ -28,8 +28,8 @@ export function useUserCreationPage() {
                 form.reset();
                 handleLocalSuccessToast(
                     TOASTS.USER_CREATED.id,
-                    tToast(TOASTS.USER_CREATED.title),
-                    tToast(TOASTS.USER_CREATED.description));
+                    t(TOASTS.USER_CREATED.title),
+                    t(TOASTS.USER_CREATED.description));
             }
         });
     }

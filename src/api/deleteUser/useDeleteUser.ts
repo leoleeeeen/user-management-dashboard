@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { createDeleteUserOptions } from "./api"
 
-export const useDeleteUser = (userId: number) => {
+export const useDeleteUser = () => {
     const queryClient = useQueryClient();
-    return useMutation({ ...createDeleteUserOptions(queryClient, userId) })
+    return useMutation({ ...createDeleteUserOptions(queryClient) })
 }

@@ -8,9 +8,10 @@ export type UserListProps = {
     isFetching: boolean;
     users: User[],
     pageSize: number;
+    handleDeleteUser: (userId: number) => void;
 }
 
-export function UserList({ isLoading, isFetching, users, pageSize }: UserListProps) {
+export function UserList({ isLoading, isFetching, users, pageSize, handleDeleteUser }: UserListProps) {
     const { t } = useTranslation("userList");
 
     return (
@@ -38,7 +39,7 @@ export function UserList({ isLoading, isFetching, users, pageSize }: UserListPro
                         if (!user) {
                             return;
                         }
-                        return <UserRow key={user.id} user={user} isFetching={isFetching} />
+                        return <UserRow key={user.id} user={user} isFetching={isFetching} handleDeleteUser={handleDeleteUser} />
                     })
                 }
             </Table.Body>

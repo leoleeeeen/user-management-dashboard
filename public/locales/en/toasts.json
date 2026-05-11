@@ -15,5 +15,11 @@
             "title": "Success",
             "description": "The user was successfully edited"
         }
+    },
+    "userDeletion": {
+        "success": {
+            "title": "Success",
+            "description": "The user was successfully deleted"
+        }
     }
 }

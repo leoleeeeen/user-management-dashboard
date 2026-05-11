@@ -15,5 +15,11 @@
             "title": "Успех",
             "description": "Изменения сохранены"
         }
+    },
+    "userDeletion": {
+        "success": {
+            "title": "Успех",
+            "description": "Пользователь успешно удален"
+        }
     }
 }

@@ -7,6 +7,8 @@ import { PaginationComponent } from "@/components/Pagination";
 import { ErrorStateComponent } from "@/components/ErrorStateComponent";
 import { SearchBar } from "@/components/SearchBar";
 import { EmptyStateComponent } from "@/components/EmptyStateComponent";
+import { DeletionDialog } from "@/components/UI/DeletionDialog";
+import { useConfirmDeletion } from "@/hooks/useConfirmDeletion";
 
 export function UserListPage() {
     const { t } = useTranslation("userListPage");
@@ -25,11 +27,19 @@ export function UserListPage() {
         isSearching,
         isError,
         refetch,
-        showPagination,
+        showPagination
     } = useUserListPage();
+
+    const {
+        isConfirmOpen,
+        handleDeleteUser,
+        handleConfirmDelete,
+        handleCloseModal
+    } = useConfirmDeletion();
 
     return (
         <Box>
+            <DeletionDialog confirm={handleConfirmDelete} cancel={handleCloseModal} isOpen={isConfirmOpen} />
             <SearchBar
                 handleSearchSubmit={handleSearchSubmit}
                 searchInput={searchInput}
@@ -52,6 +62,7 @@ export function UserListPage() {
                             isFetching={isFetching}
                             users={[]}
                             pageSize={pageSize}
+                            handleDeleteUser={handleDeleteUser}
                         />
                     ) : users?.length ? (
                         <UserListResponsive
@@ -59,6 +70,7 @@ export function UserListPage() {
                             isFetching={isFetching}
                             users={users}
                             pageSize={pageSize}
+                            handleDeleteUser={handleDeleteUser}
                         />
                     ) : <EmptyStateComponent />}
                     {showPagination && !isLoading &&

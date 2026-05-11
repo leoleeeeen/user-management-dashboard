@@ -1,0 +1,6 @@
+{
+    "confirm_title": "User deletion",
+    "confirm_body": "Are you sure you want to delete the user?",
+    "delete_button": "Delete",
+    "cancel_button": "Cancel"
+}

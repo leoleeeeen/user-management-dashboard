@@ -8,19 +8,19 @@ const deleteUser = (userId: number) => {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",
-            "X-API-KEY": import.meta.env.API_KEY
+            "X-API-KEY": import.meta.env.VITE_API_KEY
         }
     })
 }
 
-const createMutationKey = (userId: number) => {
-    return ["deleteUser", userId]
+const createMutationKey = () => {
+    return ["deleteUser"]
 }
 
-export const createDeleteUserOptions = (queryClient: QueryClient, userId: number) => {
+export const createDeleteUserOptions = (queryClient: QueryClient) => {
     return mutationOptions({
-        mutationKey: createMutationKey(userId),
-        mutationFn: () => deleteUser(userId),
+        mutationKey: createMutationKey(),
+        mutationFn: (userId: number) => deleteUser(userId),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["users"] });
         }

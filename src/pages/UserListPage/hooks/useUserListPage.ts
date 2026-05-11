@@ -79,6 +79,6 @@ export function useUserListPage() {
         isError: currentQuery.isError,
         refetch: currentQuery.refetch,
         isSearching,
-        showPagination,
+        showPagination
     }
 }
