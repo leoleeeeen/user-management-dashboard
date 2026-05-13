@@ -6,7 +6,6 @@ import { useUsersPage } from "./hooks/useUsersPage";
 import { PaginationComponent } from "@/components/Pagination";
 import { ErrorState } from "@/components/ErrorState";
 import { SearchBar } from "@/components/SearchBar";
-import { EmptyPageState } from "@/components/EmptyState";
 import { DeletionDialog } from "@/components/UI/DeletionDialog";
 import { useConfirmDeletion } from "@/hooks/useConfirmDeletion";
 
@@ -55,32 +54,21 @@ export function UsersPage() {
 
             {isError
                 ? <ErrorState refetch={refetch} />
-                : <>
-                    {isLoading ? (
-                        <UserListResponsive
-                            isLoading={true}
-                            isFetching={isFetching}
-                            users={[]}
-                            pageSize={pageSize}
-                            handleDeleteUser={handleDeleteUser}
-                        />
-                    ) : users?.length ? (
-                        <UserListResponsive
-                            isLoading={false}
-                            isFetching={isFetching}
-                            users={users}
-                            pageSize={pageSize}
-                            handleDeleteUser={handleDeleteUser}
-                        />
-                    ) : <EmptyPageState />}
-                    {showPagination && !isLoading &&
-                        <PaginationComponent
-                            page={page}
-                            pages={pages}
-                            updateParams={updateParams}
-                            pageSize={pageSize}
-                        />}
-                </>}
+                : <UserListResponsive
+                    isLoading={isLoading}
+                    isFetching={isFetching}
+                    users={users}
+                    pageSize={pageSize}
+                    handleDeleteUser={handleDeleteUser}
+                />}
+
+            {showPagination && !isLoading &&
+                <PaginationComponent
+                    page={page}
+                    pages={pages}
+                    updateParams={updateParams}
+                    pageSize={pageSize}
+                />}
         </Box >
     );
 }
