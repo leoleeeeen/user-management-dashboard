@@ -1,7 +1,7 @@
 import { Icon } from "@chakra-ui/react";
 import { SVG } from "./SVG";
 
-export function Cross() {
+export function CrossIcon() {
     return (
         <Icon size="lg">
             <SVG

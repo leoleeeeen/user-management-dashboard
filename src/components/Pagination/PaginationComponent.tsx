@@ -1,8 +1,8 @@
-import { ChevronLeft } from "@/assets/icons/ChevronLeft";
-import { ChevronRight } from "@/assets/icons/ChevronRight";
+import { ChevronLeftIcon } from "@/assets/icons/ChevronLeftIcon";
+import { ChevronRightIcon } from "@/assets/icons/ChevronRightIcon";
 import { Center, ButtonGroup, IconButton, Pagination, useBreakpointValue } from "@chakra-ui/react";
 import { PaginationDropDown } from "./PaginationDropDown";
-import type { UpdateParams } from "@/pages/UserListPage/hooks/useUserListPage";
+import type { UpdateParams } from "@/pages/UsersPage/hooks/useUsersPage";
 
 type PaginationProps = {
     page: number;
@@ -30,7 +30,7 @@ export function PaginationComponent({ page, pages, updateParams, pageSize }: Pag
 
                     <Pagination.PrevTrigger asChild>
                         <IconButton>
-                            <ChevronLeft />
+                            <ChevronLeftIcon />
                         </IconButton>
                     </Pagination.PrevTrigger>
 
@@ -47,7 +47,7 @@ export function PaginationComponent({ page, pages, updateParams, pageSize }: Pag
 
                     <Pagination.NextTrigger asChild>
                         <IconButton>
-                            <ChevronRight />
+                            <ChevronRightIcon />
                         </IconButton>
                     </Pagination.NextTrigger>
                 </ButtonGroup>

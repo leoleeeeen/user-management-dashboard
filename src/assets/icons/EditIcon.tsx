@@ -1,6 +1,6 @@
 import { SVG } from "./SVG";
 
-export function Edit() {
+export function EditIcon() {
     return (
         <SVG
             width={24}

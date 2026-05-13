@@ -1,7 +1,7 @@
 import { Center, EmptyState, VStack } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 
-export function EmptyStateComponent() {
+export function EmptyPageState() {
     const { t } = useTranslation("emptyState");
 
     return (

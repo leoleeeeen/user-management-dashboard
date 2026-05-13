@@ -1,6 +1,6 @@
 import { SVG } from "./SVG";
 
-export function DeleteUser() {
+export function DeleteUserIcon() {
     return (
         <SVG
             width={24}

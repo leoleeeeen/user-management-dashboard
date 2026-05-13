@@ -12,7 +12,7 @@ type QueryParams = {
 
 export type UpdateParams = Partial<QueryParams>;
 
-export function useUserListPage() {
+export function useUsersPage() {
     const [searchInput, setSearchInput] = useState('');
     const [searchParams, setSearchParams] = useSearchParams();
 

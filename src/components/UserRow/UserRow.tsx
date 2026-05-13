@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 import { Box, Button, Table } from "@chakra-ui/react";
 import type { User } from "@/api/getUsers/types";
-import { DeleteUser } from "@/assets/icons/DeleteUser";
+import { DeleteUserIcon } from "@/assets/icons/DeleteUserIcon";
 
 type UserRowProps = {
     user: User;
@@ -47,7 +47,7 @@ export function UserRow({ user, isFetching, handleDeleteUser }: UserRowProps) {
                             variant="delete"
                             disabled={isFetching ? true : false}
                             _disabled={{ opacity: 1 }}>
-                            <DeleteUser />
+                            <DeleteUserIcon />
                         </Button>
                     </Box>
                 </Table.Cell>

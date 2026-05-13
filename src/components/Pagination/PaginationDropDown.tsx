@@ -1,6 +1,6 @@
 import { Portal, Select } from "@chakra-ui/react";
 import { rowLimitListCollection } from "./LimitListCollection";
-import type { UpdateParams } from "@/pages/UserListPage/hooks/useUserListPage";
+import type { UpdateParams } from "@/pages/UsersPage/hooks/useUsersPage";
 
 type PaginationDropDownProps = {
     pageSize: number;

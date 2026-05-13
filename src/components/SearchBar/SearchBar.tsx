@@ -1,4 +1,4 @@
-import { Cross } from "@/assets/icons/Cross";
+import { CrossIcon } from "@/assets/icons/CrossIcon";
 import { Group, Input, Button, Spinner } from "@chakra-ui/react";
 import type { Dispatch, SetStateAction } from "react";
 import { useTranslation } from "react-i18next";
@@ -35,7 +35,7 @@ export function SearchBar({
                     position="absolute"
                     right="75px"
                     zIndex="1">
-                    <Cross />
+                    <CrossIcon />
                 </Button>
 
                 <Button

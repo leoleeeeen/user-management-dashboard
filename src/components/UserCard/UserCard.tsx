@@ -1,9 +1,9 @@
 import { Box, Button, Card, DataList, Heading, Skeleton } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import type { User } from "@/api/getUsers/types";
-import { Edit } from "@/assets/icons/Edit";
+import { EditIcon } from "@/assets/icons/EditIcon";
 import { Link } from "react-router-dom";
-import { DeleteUser } from "@/assets/icons/DeleteUser";
+import { DeleteUserIcon } from "@/assets/icons/DeleteUserIcon";
 
 type UserCardProps = {
     user?: User;
@@ -39,7 +39,7 @@ export function UserCard({ user, isLoading, isFetching, handleDeleteUser }: User
                             _disabled={{ opacity: 1 }}
                             variant="secondary"
                             px="10px">
-                            <Edit />
+                            <EditIcon />
                         </Button>
                     </Link>
 
@@ -51,7 +51,7 @@ export function UserCard({ user, isLoading, isFetching, handleDeleteUser }: User
                         px="10px"
                         disabled={isFetching || isLoading ? true : false}
                         _disabled={{ opacity: 1 }}>
-                        <DeleteUser />
+                        <DeleteUserIcon />
                     </Button>
                 </Box>
             </Card.Header>

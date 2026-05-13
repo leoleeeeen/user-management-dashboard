@@ -1,6 +1,6 @@
 import { SVG } from "./SVG";
 
-export function ChevronLeft() {
+export function ArrowNarrowLeftIcon() {
     return (
         <SVG
             width={24}
@@ -9,11 +9,12 @@ export function ChevronLeft() {
             fill="none"
             xmlns="http://www.w3.org/2000/svg">
             <path
-                d="M15 6L9 12L15 18"
-                stroke="black"
-                strokeWidth="2"
+                d="M5 12H19M5 12L9 16M5 12L9 8"
+                stroke="black" strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round" />
         </SVG>
     )
 }
+
+

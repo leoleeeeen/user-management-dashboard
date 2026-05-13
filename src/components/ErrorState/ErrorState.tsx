@@ -8,7 +8,7 @@ type ErrorStateProps = {
     errorResponseMessage?: string;
 }
 
-export function ErrorStateComponent({ refetch, errorResponseMessage }: ErrorStateProps) {
+export function ErrorState({ refetch, errorResponseMessage }: ErrorStateProps) {
     const { t } = useTranslation("errorState")
 
     return (

@@ -1,4 +1,4 @@
-import { ArrowNarrowLeft } from "@/assets/icons/ArrowNarrowLeft";
+import { ArrowNarrowLeftIcon } from "@/assets/icons/ArrowNarrowLeftIcon";
 import { UserForm } from "@/components/UserForm";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom"
@@ -16,7 +16,7 @@ export function UserCreationPage() {
             <Link to={"/"}>
                 <Button
                     variant="secondary">
-                    <ArrowNarrowLeft />
+                    <ArrowNarrowLeftIcon />
                     {t("back_button")}
                 </Button>
             </Link>

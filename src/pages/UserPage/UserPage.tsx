@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom"
 import styles from "./UserPage.module.css"
-import { ArrowNarrowLeft } from "@/assets/icons/ArrowNarrowLeft";
+import { ArrowNarrowLeftIcon } from "@/assets/icons/ArrowNarrowLeftIcon";
 import { useTranslation } from "react-i18next"
 import { Box, Button, DataList, Skeleton, Text } from "@chakra-ui/react";
 import { useUserPage } from "./hooks/useUserPage";
-import { ErrorStateComponent } from "@/components/ErrorStateComponent";
-import { DeleteUser } from "@/assets/icons/DeleteUser";
+import { ErrorState } from "@/components/ErrorState";
+import { DeleteUserIcon } from "@/assets/icons/DeleteUserIcon";
 import { useConfirmDeletion } from "@/hooks/useConfirmDeletion";
 import { DeletionDialog } from "@/components/UI/DeletionDialog";
 
@@ -31,13 +31,13 @@ export function UserPage() {
             <Link to={"/"}>
                 <Button
                     variant="secondary">
-                    <ArrowNarrowLeft />
+                    <ArrowNarrowLeftIcon />
                     {t("back_button")}
                 </Button>
             </Link>
 
             {isError
-                ? <ErrorStateComponent refetch={refetch} errorResponseMessage={errorResponseMessage} />
+                ? <ErrorState refetch={refetch} errorResponseMessage={errorResponseMessage} />
                 : <>
                     <Skeleton height="45px" loading={userInfoIsLoading} >
                         <Text
@@ -155,7 +155,7 @@ export function UserPage() {
                                 variant="delete"
                                 px="10px"
                             >
-                                <DeleteUser />
+                                <DeleteUserIcon />
                             </Button>
                         </Box>
                     </div>

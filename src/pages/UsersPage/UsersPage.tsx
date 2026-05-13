@@ -2,15 +2,15 @@ import { Link } from "react-router-dom"
 import { UserListResponsive } from "@/components/UserList"
 import { useTranslation } from "react-i18next"
 import { Box, Button } from "@chakra-ui/react";
-import { useUserListPage } from "./hooks/useUserListPage";
+import { useUsersPage } from "./hooks/useUsersPage";
 import { PaginationComponent } from "@/components/Pagination";
-import { ErrorStateComponent } from "@/components/ErrorStateComponent";
+import { ErrorState } from "@/components/ErrorState";
 import { SearchBar } from "@/components/SearchBar";
-import { EmptyStateComponent } from "@/components/EmptyStateComponent";
+import { EmptyPageState } from "@/components/EmptyState";
 import { DeletionDialog } from "@/components/UI/DeletionDialog";
 import { useConfirmDeletion } from "@/hooks/useConfirmDeletion";
 
-export function UserListPage() {
+export function UsersPage() {
     const { t } = useTranslation("userListPage");
     const {
         searchInput,
@@ -28,7 +28,7 @@ export function UserListPage() {
         isError,
         refetch,
         showPagination
-    } = useUserListPage();
+    } = useUsersPage();
 
     const {
         isConfirmOpen,
@@ -54,7 +54,7 @@ export function UserListPage() {
             </Link>
 
             {isError
-                ? <ErrorStateComponent refetch={refetch} />
+                ? <ErrorState refetch={refetch} />
                 : <>
                     {isLoading ? (
                         <UserListResponsive
@@ -72,7 +72,7 @@ export function UserListPage() {
                             pageSize={pageSize}
                             handleDeleteUser={handleDeleteUser}
                         />
-                    ) : <EmptyStateComponent />}
+                    ) : <EmptyPageState />}
                     {showPagination && !isLoading &&
                         <PaginationComponent
                             page={page}
