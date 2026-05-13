@@ -1,16 +1,19 @@
 import { Portal, Select } from "@chakra-ui/react";
-import { rowLimitListCollection } from "./LimitListCollection";
+import { cardLimitListCollection, rowLimitListCollection } from "./LimitListCollection";
 import type { UpdateParams } from "@/pages/UsersPage/hooks/useUsersPage";
 
 type PaginationDropDownProps = {
     pageSize: number;
     updateParams: (params: UpdateParams) => void;
+    isMobile: boolean;
 }
 
-export function PaginationDropDown({ pageSize, updateParams }: PaginationDropDownProps) {
+export function PaginationDropDown({ pageSize, updateParams, isMobile }: PaginationDropDownProps) {
+    const collection = isMobile ? cardLimitListCollection : rowLimitListCollection;
 
     return (
-        <Select.Root collection={rowLimitListCollection} size="md" width="80px">
+        <Select.Root collection={collection}
+            size="md" width="80px">
             <Select.HiddenSelect />
 
             <Select.Control >
@@ -26,7 +29,7 @@ export function PaginationDropDown({ pageSize, updateParams }: PaginationDropDow
             <Portal>
                 <Select.Positioner>
                     <Select.Content>
-                        {rowLimitListCollection.items.map((limit) => (
+                        {collection.items.map((limit) => (
                             <Select.Item
                                 item={limit}
                                 key={limit.value}

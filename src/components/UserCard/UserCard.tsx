@@ -85,7 +85,7 @@ export function UserCard({ user, isLoading, isFetching, handleDeleteUser }: User
                 <Box display="flex" gap="2" justifyContent="center" mt="6">
                     <Link to={`userPage/${user?.id}`} className="link_wide_button">
                         <Button
-                            disabled={isFetching ? true : false}
+                            disabled={isFetching || isLoading ? true : false}
                             _disabled={{ opacity: 1 }}
                             variant="primary"
                             width="100%">

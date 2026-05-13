@@ -1,5 +1,6 @@
 {
     "search_placeholder": "Enter a name",
     "search_button": "Search",
-    "create_user_button": "Create user"
+    "create_user_button": "Create user",
+    "mobile_pagination_text": "of"
 }

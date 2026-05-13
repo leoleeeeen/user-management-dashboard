@@ -1,5 +1,6 @@
 {
     "search_placeholder": "Введите имя",
     "search_button": "Найти",
-    "create_user_button": "Создать пользователя"
+    "create_user_button": "Создать пользователя",
+    "mobile_pagination_text": "из"
 }

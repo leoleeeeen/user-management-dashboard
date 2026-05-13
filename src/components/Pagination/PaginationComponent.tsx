@@ -1,8 +1,9 @@
 import { ChevronLeftIcon } from "@/assets/icons/ChevronLeftIcon";
 import { ChevronRightIcon } from "@/assets/icons/ChevronRightIcon";
-import { Center, ButtonGroup, IconButton, Pagination, useBreakpointValue } from "@chakra-ui/react";
+import { Center, ButtonGroup, IconButton, Pagination, useBreakpointValue, Text } from "@chakra-ui/react";
 import { PaginationDropDown } from "./PaginationDropDown";
 import type { UpdateParams } from "@/pages/UsersPage/hooks/useUsersPage";
+import { useTranslation } from "react-i18next";
 
 type PaginationProps = {
     page: number;
@@ -12,7 +13,8 @@ type PaginationProps = {
 }
 
 export function PaginationComponent({ page, pages, updateParams, pageSize }: PaginationProps) {
-    const isMobile = useBreakpointValue({ base: true, md: false });
+    const isMobile = useBreakpointValue({ base: true, md: false }) || false;
+    const { t } = useTranslation("userListPage");
 
     return (
         <Center mt="8">
@@ -26,6 +28,7 @@ export function PaginationComponent({ page, pages, updateParams, pageSize }: Pag
                     <PaginationDropDown
                         pageSize={pageSize}
                         updateParams={updateParams}
+                        isMobile={isMobile}
                     />
 
                     <Pagination.PrevTrigger asChild>
@@ -35,7 +38,9 @@ export function PaginationComponent({ page, pages, updateParams, pageSize }: Pag
                     </Pagination.PrevTrigger>
 
                     {isMobile
-                        ? <Pagination.PageText />
+                        ? <Text fontWeight="600">
+                            {page} {t("mobile_pagination_text")} {pages}
+                        </Text>
                         : <Pagination.Items
                             render={(item) => (
                                 <IconButton
