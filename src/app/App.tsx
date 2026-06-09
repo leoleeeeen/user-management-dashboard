@@ -7,7 +7,7 @@ import { routes } from "./routes/routes";
 const router = createBrowserRouter(
   routes,
   {
-    basename: '/user_management'
+    basename: '/user-management-dashboard'
   }
 );
 
