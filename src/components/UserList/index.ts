@@ -1,1 +1,0 @@
-export { UserListResponsive } from "./UserListResponsive"

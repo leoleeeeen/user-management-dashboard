@@ -1,0 +1,43 @@
+body {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #111;
+    overflow-y: scroll;
+}
+
+.text_center {
+    text-align: center;
+}
+
+.heading_1 {
+    margin-top: 20px;
+    font-weight: 800;
+    font-size: 2rem;
+}
+
+.search_input {
+    width: 100%;
+    padding: 22px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+}
+
+.content {
+    max-width: 1200px;
+    padding-inline: 40px;
+    margin: 40px auto;
+}
+
+@media (max-width: 767px) {
+    .content {
+        padding-inline: 20px;
+    }
+
+    .link_wide_button {
+        display: block;
+        width: 100%;
+    }
+}
