@@ -8,7 +8,7 @@ i18n.use(Backend).use(LanguageDetector).use(initReactI18next).init({
     fallbackLng: "en",
     ns: ["userListPage"],
     backend: {
-        loadPath: "/user-management-dashboard/locales/{{lng}}/{{ns}}.json"
+        loadPath: `${import.meta.env.VITE_BASE_URL || '/'}locales/{{lng}}/{{ns}}.json`
     }
 });
 
