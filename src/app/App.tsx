@@ -7,7 +7,7 @@ import { routes } from "./routes/routes";
 const router = createBrowserRouter(
   routes,
   {
-    basename: '/user-management-dashboard'
+    basename: import.meta.env.VITE_BASE_URL || '/'
   }
 );
 

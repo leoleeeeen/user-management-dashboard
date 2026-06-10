@@ -42,6 +42,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
+          VITE_BASE_URL: /user-management-dashboard/
           VITE_API_URL: ${{vars.VITE_API_URL}}
           VITE_API_KEY: ${{secrets.VITE_API_KEY}}
           VITE_IMG_API_URL: ${{vars.VITE_IMG_API_URL}}
