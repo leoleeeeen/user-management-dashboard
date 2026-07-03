@@ -1,73 +1,71 @@
-# React + TypeScript + Vite
+# User Management Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Учебный проект для закрепления навыков разработки на React.
 
-Currently, two official plugins are available:
+Приложение позволяет управлять списком пользователей: просматривать, искать, создавать, редактировать и удалять записи. Данные загружаются с REST API, кэшируются с помощью React Query и автоматически обновляются после изменений.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Демо
 
-## React Compiler
+* GitHub Pages: https://leoleeeeen.github.io/user-management-dashboard/
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Возможности
 
-## Expanding the ESLint configuration
+* Просмотр списка и карточки пользователя
+* CRUD-операции
+* Поиск пользователей
+* Пагинация и выбор количества записей на странице
+* Валидация форм
+* Подтверждение удаления
+* Toast-уведомления
+* Переключение языка (Русский / English)
+* Skeleton, Spinner и Empty State
+* Адаптивный интерфейс (таблица автоматически преобразуется в карточки на мобильных устройствах)
+* Централизованная обработка ошибок
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Технологии
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+* React
+* TypeScript
+* Vite
+* React Router
+* React Query
+* Axios
+* React Hook Form
+* Chakra UI
+* i18next
+* Feature-Sliced Design (FSD)
+* ESLint
+* Husky
+* GitHub Actions
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Особенности реализации
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+* Архитектура Feature-Sliced Design
+* Переиспользуемые компоненты, формы, toast-уведомления и кастомные хуки
+* Кэширование запросов и автоматическая инвалидизация после изменений
+* Обработка состояний загрузки и сетевых ошибок
+* Автоматический деплой на GitHub Pages через GitHub Actions
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Скриншоты
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Главный экран
+![Users_Page](docs/img/users_page.png)
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Страница пользователя
+![User_Page](docs/img/user_page.png)
+
+### Страница создания пользователя
+![User_Creation_Page](docs/img/user_creation_page.png)
+
+### Подтверждение удаления пользователя
+![Deletion_confirm](docs/img/deletion_confirm.png)
+
+### Адаптив на tablet/mobile
+![Tablet-Mobile](docs/img/tablet-mobile.png)
+
+### Состояние загрузки Skeleton
+![Skeleton](docs/img/skeleton.png)
+
+### Смена языка
+![Lang](docs/img/lang.png)
+
